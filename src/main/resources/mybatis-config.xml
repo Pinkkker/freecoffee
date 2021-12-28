@@ -86,6 +86,8 @@
         </table>
         <table schema="" tableName="comment" domainObjectName="Comment">
         </table>
+        <table schema="" tableName="technologyStack" domainObjectName="TechnologyStack">
+        </table>
         <table schema="" tableName="response" domainObjectName="Response">
             <!--是否使用实际列名,默认为false-->
             <!--<property name="useActualColumnNames" value="false" />-->
