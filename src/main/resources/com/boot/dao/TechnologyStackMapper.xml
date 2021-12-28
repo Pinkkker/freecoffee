@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.dao.TechnologyStackMapper">
+  <resultMap id="BaseResultMap" type="com.example.gitforum.TechnologyStack">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="language1" jdbcType="VARCHAR" property="language1" />
+    <result column="language2" jdbcType="VARCHAR" property="language2" />
+    <result column="language3" jdbcType="VARCHAR" property="language3" />
+    <result column="language4" jdbcType="VARCHAR" property="language4" />
+    <result column="language5" jdbcType="VARCHAR" property="language5" />
+    <result column="language6" jdbcType="VARCHAR" property="language6" />
+    <result column="language7" jdbcType="VARCHAR" property="language7" />
+    <result column="language8" jdbcType="VARCHAR" property="language8" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, name, language1, language2, language3, language4, language5, language6, language7, 
+    language8
+  </sql>
+  <select id="selectByExample" parameterType="com.example.gitforum.TechnologyStackExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from technologyStack
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from technologyStack
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from technologyStack
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.gitforum.TechnologyStackExample">
+    delete from technologyStack
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.gitforum.TechnologyStack">
+    insert into technologyStack (ID, name, language1, 
+      language2, language3, language4, 
+      language5, language6, language7, 
+      language8)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{language1,jdbcType=VARCHAR}, 
+      #{language2,jdbcType=VARCHAR}, #{language3,jdbcType=VARCHAR}, #{language4,jdbcType=VARCHAR}, 
+      #{language5,jdbcType=VARCHAR}, #{language6,jdbcType=VARCHAR}, #{language7,jdbcType=VARCHAR}, 
+      #{language8,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.gitforum.TechnologyStack">
+    insert into technologyStack
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="language1 != null">
+        language1,
+      </if>
+      <if test="language2 != null">
+        language2,
+      </if>
+      <if test="language3 != null">
+        language3,
+      </if>
+      <if test="language4 != null">
+        language4,
+      </if>
+      <if test="language5 != null">
+        language5,
+      </if>
+      <if test="language6 != null">
+        language6,
+      </if>
+      <if test="language7 != null">
+        language7,
+      </if>
+      <if test="language8 != null">
+        language8,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="language1 != null">
+        #{language1,jdbcType=VARCHAR},
+      </if>
+      <if test="language2 != null">
+        #{language2,jdbcType=VARCHAR},
+      </if>
+      <if test="language3 != null">
+        #{language3,jdbcType=VARCHAR},
+      </if>
+      <if test="language4 != null">
+        #{language4,jdbcType=VARCHAR},
+      </if>
+      <if test="language5 != null">
+        #{language5,jdbcType=VARCHAR},
+      </if>
+      <if test="language6 != null">
+        #{language6,jdbcType=VARCHAR},
+      </if>
+      <if test="language7 != null">
+        #{language7,jdbcType=VARCHAR},
+      </if>
+      <if test="language8 != null">
+        #{language8,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.gitforum.TechnologyStackExample" resultType="java.lang.Long">
+    select count(*) from technologyStack
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update technologyStack
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language1 != null">
+        language1 = #{record.language1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language2 != null">
+        language2 = #{record.language2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language3 != null">
+        language3 = #{record.language3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language4 != null">
+        language4 = #{record.language4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language5 != null">
+        language5 = #{record.language5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language6 != null">
+        language6 = #{record.language6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language7 != null">
+        language7 = #{record.language7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language8 != null">
+        language8 = #{record.language8,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update technologyStack
+    set ID = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      language1 = #{record.language1,jdbcType=VARCHAR},
+      language2 = #{record.language2,jdbcType=VARCHAR},
+      language3 = #{record.language3,jdbcType=VARCHAR},
+      language4 = #{record.language4,jdbcType=VARCHAR},
+      language5 = #{record.language5,jdbcType=VARCHAR},
+      language6 = #{record.language6,jdbcType=VARCHAR},
+      language7 = #{record.language7,jdbcType=VARCHAR},
+      language8 = #{record.language8,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.gitforum.TechnologyStack">
+    update technologyStack
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="language1 != null">
+        language1 = #{language1,jdbcType=VARCHAR},
+      </if>
+      <if test="language2 != null">
+        language2 = #{language2,jdbcType=VARCHAR},
+      </if>
+      <if test="language3 != null">
+        language3 = #{language3,jdbcType=VARCHAR},
+      </if>
+      <if test="language4 != null">
+        language4 = #{language4,jdbcType=VARCHAR},
+      </if>
+      <if test="language5 != null">
+        language5 = #{language5,jdbcType=VARCHAR},
+      </if>
+      <if test="language6 != null">
+        language6 = #{language6,jdbcType=VARCHAR},
+      </if>
+      <if test="language7 != null">
+        language7 = #{language7,jdbcType=VARCHAR},
+      </if>
+      <if test="language8 != null">
+        language8 = #{language8,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.gitforum.TechnologyStack">
+    update technologyStack
+    set name = #{name,jdbcType=VARCHAR},
+      language1 = #{language1,jdbcType=VARCHAR},
+      language2 = #{language2,jdbcType=VARCHAR},
+      language3 = #{language3,jdbcType=VARCHAR},
+      language4 = #{language4,jdbcType=VARCHAR},
+      language5 = #{language5,jdbcType=VARCHAR},
+      language6 = #{language6,jdbcType=VARCHAR},
+      language7 = #{language7,jdbcType=VARCHAR},
+      language8 = #{language8,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
