@@ -54,6 +54,7 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/api/v1/login", "anon");
         filterMap.put("/api/v1/request-sms-code", "anon");
+        filterMap.put("/admin/**", "anon");
         filterMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登陆请求

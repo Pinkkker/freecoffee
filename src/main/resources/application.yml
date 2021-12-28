@@ -1,12 +1,12 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/数据库名?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/forum?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: zzz123
 
 mybatis:
-  type-aliases-package: com.example.forum.entity
+  type-aliases-package: com.pink.forum.entity
   mapperLocations: classpath:mapper/*.xml
 
 pagehelper:
