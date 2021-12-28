@@ -29,7 +29,7 @@
 
 
         <!-- jdbc连接 -->
-        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+        <jdbcConnection driverClass="${spring.datasource.driverClassName}"
                         connectionURL="${spring.datasource.url}"
                         userId="${spring.datasource.username}"
                         password="${spring.datasource.password}">
@@ -56,7 +56,7 @@
         </javaTypeResolver>
 
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="com.example.gitforum" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.example.forum.entity" targetProject="src/main/java">
             <!-- 是否让 schema 作为包的后缀，默认为false -->
             <!--<property name="enableSubPackages" value="false"/>-->
             <!-- 是否针对string类型的字段在set方法中进行修剪，默认false -->
@@ -64,13 +64,13 @@
         </javaModelGenerator>
 
 
-        <!-- 生成Mapper.xml文件 -->
-        <sqlMapGenerator targetPackage="com.boot.dao" targetProject="src/main/resources">
+        <!--生成Mapper.xml文件-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <!--<property name="enableSubPackages" value="false"/>-->
         </sqlMapGenerator>
 
         <!-- 生成 XxxMapper.java 接口-->
-        <javaClientGenerator targetPackage="com.boot.dao" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.example.forum.dao" targetProject="src/main/java" type="XMLMAPPER">
             <!--<property name="enableSubPackages" value="false"/>-->
         </javaClientGenerator>
 
@@ -80,15 +80,17 @@
              domainObjectName 是要生成的实体类名(可以不指定，默认按帕斯卡命名法将表名转换成类名)
              enableXXXByExample 默认为 true， 为 true 会生成一个对应Example帮助类，帮助你进行条件查询，不想要可以设为false
              -->
-        <table schema="" tableName="user" domainObjectName="User">
-        </table>
-        <table schema="" tableName="post" domainObjectName="Post">
-        </table>
-        <table schema="" tableName="comment" domainObjectName="Comment">
-        </table>
-        <table schema="" tableName="response" domainObjectName="Response">
+        <table schema="" tableName="t_products" domainObjectName="Product"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+               enableUpdateByExample="false" selectByExampleQueryId="true">
             <!--是否使用实际列名,默认为false-->
-            <!--<property name="useActualColumnNames" value="false" />-->
+            <property name="useActualColumnNames" value="true" />
         </table>
+        <!--<table schema="" tableName="t_shop" domainObjectName="Shop"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+               enableUpdateByExample="false" selectByExampleQueryId="true">
+            &lt;!&ndash;是否使用实际列名,默认为false&ndash;&gt;
+            <property name="useActualColumnNames" value="true" />
+        </table>-->
     </context>
 </generatorConfiguration>

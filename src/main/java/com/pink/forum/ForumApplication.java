@@ -1,13 +1,13 @@
-package com.example.gitforum;
+package com.pink.forum;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GitforumApplication {
+public class ForumApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GitforumApplication.class, args);
+        SpringApplication.run(ForumApplication.class, args);
     }
 
 }
