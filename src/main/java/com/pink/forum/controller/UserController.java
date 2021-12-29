@@ -27,7 +27,7 @@ public class UserController {
     final UserMapper userMapper;
 
     /**
-     * @description: 用户登录
+     * 用户登录
      */
     @PostMapping("/login")
     public Result userLogin(@RequestBody Map<String, String> data) {

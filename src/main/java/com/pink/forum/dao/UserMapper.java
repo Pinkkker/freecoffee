@@ -3,8 +3,13 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.User;
 import com.pink.forum.entity.UserExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository
 public interface UserMapper {
     long countByExample(UserExample example);
 

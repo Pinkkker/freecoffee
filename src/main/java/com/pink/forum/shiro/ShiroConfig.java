@@ -1,13 +1,12 @@
 package com.pink.forum.shiro;
 
-import lombok.RequiredArgsConstructor;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,10 +14,9 @@ import java.util.Map;
  * @author cyb
  */
 @Configuration
-@RequiredArgsConstructor
 public class ShiroConfig {
     //创建realm对象
-    @Bean
+    @Bean(name = "myRealm")
     MyRealm myRealm() {
         MyRealm myRealm = new MyRealm();
         //修改凭证校验匹配器
@@ -54,12 +52,13 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/api/v1/login", "anon");
         filterMap.put("/api/v1/request-sms-code", "anon");
-        filterMap.put("/admin/**", "anon");
+        filterMap.put("/admin/login", "anon");
+        filterMap.put("/admin/**", "roles[root]");
         filterMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登陆请求
-        bean.setLoginUrl("/api/v1/notLogin");
-        bean.setUnauthorizedUrl("/api/v1/unauthorized");
+        bean.setLoginUrl("/admin/notLogin");
+        bean.setUnauthorizedUrl("/admin/unauthorized");
 
         return bean;
     }

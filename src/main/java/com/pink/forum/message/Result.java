@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result {
+public class Result implements Serializable {
 
     private String code;
     private String msg;
@@ -17,7 +19,14 @@ public class Result {
         Result result = new Result();
         result.setCode("200");
         result.setMsg("OK");
-        result.setData("");
+        return result;
+    }
+
+    public static Result ok(Object data) {
+        Result result = new Result();
+        result.setCode("200");
+        result.setMsg("OK");
+        result.setData(data);
         return result;
     }
 
@@ -25,7 +34,12 @@ public class Result {
         Result result = new Result();
         result.setCode("400");
         result.setMsg("Bad Request");
-        result.setData("");
+        return result;
+    }
+    public static Result bad(String msg) {
+        Result result = new Result();
+        result.setCode("400");
+        result.setMsg(msg);
         return result;
     }
 }
