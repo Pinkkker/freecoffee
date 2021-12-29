@@ -6,10 +6,14 @@ import com.pink.forum.entity.UserExample;
 import com.pink.forum.message.Result;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,16 +35,14 @@ public class UserController {
      */
     @PostMapping("/login")
     public Result userLogin(@RequestBody Map<String, String> data) {
-        UserExample userExample = new UserExample();
-        UserExample.Criteria criteria = userExample.createCriteria();
+        Subject subject = SecurityUtils.getSubject();
 
-        criteria.andNameEqualTo(data.get("username")).andPasswordEqualTo(data.get("password"));
-        List<User> list = userMapper.selectByExample(userExample);
-
-        if (list == null || list.size() == 0) {
-            return Result.bad();
-        }else {
+        try {
+            UsernamePasswordToken token = new UsernamePasswordToken(data.get("username"), data.get("password"));
+            subject.login(token);
             return Result.ok();
+        } catch (UnknownAccountException | IncorrectCredentialsException e){
+            return Result.bad("用户名密码错误");
         }
     }
 
@@ -49,6 +51,9 @@ public class UserController {
      */
     @PostMapping("/logout")
     public Result userLogout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+
         System.out.println("登出");
         return Result.ok();
     }
@@ -80,12 +85,15 @@ public class UserController {
     /**
      * @description: 获取当前登录状态
      */
-//    @GetMapping("/me")
-//    public Map<String, Object> loginStatus(HttpServletResponse response) {
-//        Subject subject = SecurityUtils.getSubject();
-//        if (subject.isAuthenticated()) {
-//            response.setStatus(200);
-//            int id =
-//        }
-//    }
+    @GetMapping("/me")
+    public Result loginStatus() {
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+
+        HashMap<String, String> data = new HashMap<>(){{
+            put("username", user.getName());
+        }};
+
+        return Result.ok(data);
+    }
 }

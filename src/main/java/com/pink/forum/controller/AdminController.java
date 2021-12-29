@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
@@ -60,7 +59,7 @@ public class AdminController {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
         String flag = data.get("flag");
-        if (flag.equals("0")) {
+        if ("0".equals(flag)) {
             String username = data.get("username");
             user.setName(username);
             userService.updateByPrimaryKeySelective(user);
