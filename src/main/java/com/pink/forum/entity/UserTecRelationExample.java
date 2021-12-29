@@ -3,14 +3,14 @@ package com.pink.forum.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TechnologyStackExample {
+public class UserTecRelationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TechnologyStackExample() {
+    public UserTecRelationExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -164,133 +164,123 @@ public class TechnologyStackExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
+        public Criteria andUser_idIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+        public Criteria andUser_idIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+        public Criteria andUser_idEqualTo(Integer value) {
+            addCriterion("user_id =", value, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+        public Criteria andUser_idNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
+        public Criteria andUser_idGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
+        public Criteria andUser_idGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
+        public Criteria andUser_idLessThan(Integer value) {
+            addCriterion("user_id <", value, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
+        public Criteria andUser_idLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
+        public Criteria andUser_idIn(List<Integer> values) {
+            addCriterion("user_id in", values, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
+        public Criteria andUser_idNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
+        public Criteria andUser_idBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
+        public Criteria andUser_idNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "user_id");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
+        public Criteria andTec_idIsNull() {
+            addCriterion("tec_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
+        public Criteria andTec_idIsNotNull() {
+            addCriterion("tec_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+        public Criteria andTec_idEqualTo(Integer value) {
+            addCriterion("tec_id =", value, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+        public Criteria andTec_idNotEqualTo(Integer value) {
+            addCriterion("tec_id <>", value, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
+        public Criteria andTec_idGreaterThan(Integer value) {
+            addCriterion("tec_id >", value, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
+        public Criteria andTec_idGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tec_id >=", value, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
+        public Criteria andTec_idLessThan(Integer value) {
+            addCriterion("tec_id <", value, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
+        public Criteria andTec_idLessThanOrEqualTo(Integer value) {
+            addCriterion("tec_id <=", value, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
+        public Criteria andTec_idIn(List<Integer> values) {
+            addCriterion("tec_id in", values, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
+        public Criteria andTec_idNotIn(List<Integer> values) {
+            addCriterion("tec_id not in", values, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
+        public Criteria andTec_idBetween(Integer value1, Integer value2) {
+            addCriterion("tec_id between", value1, value2, "tec_id");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+        public Criteria andTec_idNotBetween(Integer value1, Integer value2) {
+            addCriterion("tec_id not between", value1, value2, "tec_id");
             return (Criteria) this;
         }
     }

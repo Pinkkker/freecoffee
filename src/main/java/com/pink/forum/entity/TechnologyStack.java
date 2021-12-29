@@ -1,20 +1,18 @@
 package com.pink.forum.entity;
 
 public class TechnologyStack {
-    private Integer ID;
+    private Integer id;
 
     private String name;
 
-    private String language;
-
     private Integer status;
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -23,14 +21,6 @@ public class TechnologyStack {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language == null ? null : language.trim();
     }
 
     public Integer getStatus() {

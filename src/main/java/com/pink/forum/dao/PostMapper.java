@@ -3,9 +3,14 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.Post;
 import com.pink.forum.entity.PostExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PostMapper {
-    int deleteByPrimaryKey(Integer ID);
+    long countByExample(PostExample example);
+
+    int deleteByExample(PostExample example);
+
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Post record);
 
@@ -13,7 +18,11 @@ public interface PostMapper {
 
     List<Post> selectByExample(PostExample example);
 
-    Post selectByPrimaryKey(Integer ID);
+    Post selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Post record, @Param("example") PostExample example);
+
+    int updateByExample(@Param("record") Post record, @Param("example") PostExample example);
 
     int updateByPrimaryKeySelective(Post record);
 

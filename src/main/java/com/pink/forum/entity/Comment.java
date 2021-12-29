@@ -3,11 +3,9 @@ package com.pink.forum.entity;
 import java.util.Date;
 
 public class Comment {
-    private Integer ID;
+    private Integer id;
 
     private String contents;
-
-    private String writer;
 
     private Date time;
 
@@ -17,12 +15,16 @@ public class Comment {
 
     private Integer responseNumber;
 
-    public Integer getID() {
-        return ID;
+    private Integer post_id;
+
+    private Integer user_id;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getContents() {
@@ -31,14 +33,6 @@ public class Comment {
 
     public void setContents(String contents) {
         this.contents = contents == null ? null : contents.trim();
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer == null ? null : writer.trim();
     }
 
     public Date getTime() {
@@ -71,5 +65,21 @@ public class Comment {
 
     public void setResponseNumber(Integer responseNumber) {
         this.responseNumber = responseNumber;
+    }
+
+    public Integer getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(Integer post_id) {
+        this.post_id = post_id;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 }

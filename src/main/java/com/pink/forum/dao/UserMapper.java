@@ -3,9 +3,14 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.User;
 import com.pink.forum.entity.UserExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer ID);
+    long countByExample(UserExample example);
+
+    int deleteByExample(UserExample example);
+
+    int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
 
@@ -13,7 +18,11 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    User selectByPrimaryKey(Integer ID);
+    User selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
     int updateByPrimaryKeySelective(User record);
 

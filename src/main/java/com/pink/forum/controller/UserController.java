@@ -80,12 +80,12 @@ public class UserController {
     /**
      * @description: 获取当前登录状态
      */
-    @GetMapping("/me")
-    public Map<String, Object> loginStatus(HttpServletResponse response) {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.isAuthenticated()) {
-            response.setStatus(200);
-            int id =
-        }
-    }
+//    @GetMapping("/me")
+//    public Map<String, Object> loginStatus(HttpServletResponse response) {
+//        Subject subject = SecurityUtils.getSubject();
+//        if (subject.isAuthenticated()) {
+//            response.setStatus(200);
+//            int id =
+//        }
+//    }
 }

@@ -3,7 +3,7 @@ package com.pink.forum.entity;
 import java.util.Date;
 
 public class User {
-    private Integer ID;
+    private Integer id;
 
     private String name;
 
@@ -19,12 +19,12 @@ public class User {
 
     private Integer status;
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

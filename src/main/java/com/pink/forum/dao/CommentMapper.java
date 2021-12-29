@@ -3,9 +3,14 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.CommentExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CommentMapper {
-    int deleteByPrimaryKey(Integer ID);
+    long countByExample(CommentExample example);
+
+    int deleteByExample(CommentExample example);
+
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Comment record);
 
@@ -13,7 +18,11 @@ public interface CommentMapper {
 
     List<Comment> selectByExample(CommentExample example);
 
-    Comment selectByPrimaryKey(Integer ID);
+    Comment selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Comment record, @Param("example") CommentExample example);
+
+    int updateByExample(@Param("record") Comment record, @Param("example") CommentExample example);
 
     int updateByPrimaryKeySelective(Comment record);
 

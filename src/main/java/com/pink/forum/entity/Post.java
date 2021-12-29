@@ -3,13 +3,11 @@ package com.pink.forum.entity;
 import java.util.Date;
 
 public class Post {
-    private Integer ID;
+    private Integer id;
 
     private String title;
 
     private String contents;
-
-    private String writer;
 
     private Date time;
 
@@ -19,12 +17,14 @@ public class Post {
 
     private Integer commentNumber;
 
-    public Integer getID() {
-        return ID;
+    private Integer user_id;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -41,14 +41,6 @@ public class Post {
 
     public void setContents(String contents) {
         this.contents = contents == null ? null : contents.trim();
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer == null ? null : writer.trim();
     }
 
     public Date getTime() {
@@ -81,5 +73,13 @@ public class Post {
 
     public void setCommentNumber(Integer commentNumber) {
         this.commentNumber = commentNumber;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 }
