@@ -6,4 +6,6 @@ public interface UserService {
 
     User selectByName(String name);
 
+    void updateByPrimaryKeySelective(User record);
+
 }

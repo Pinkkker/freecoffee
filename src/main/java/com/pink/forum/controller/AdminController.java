@@ -1,8 +1,8 @@
 package com.pink.forum.controller;
 
-import com.pink.forum.dao.UserMapper;
 import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
+import com.pink.forum.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    final UserMapper userMapper;
+    final UserService userService;
 
     @PostMapping("/login")
     public Result login(@RequestBody Map<String, String> data) {
@@ -53,6 +53,28 @@ public class AdminController {
             put("username", user.getName());
         }};
         return Result.ok(data);
+    }
+
+    @PutMapping("/me")
+    public Result updateInfo(@RequestBody Map<String, String> data) {
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+        String flag = data.get("flag");
+        if (flag.equals("0")) {
+            String username = data.get("username");
+            user.setName(username);
+            userService.updateByPrimaryKeySelective(user);
+        } else {
+            String oldP = data.get("oldP");
+            String newP = data.get("newP");
+            if (user.getPassword().equals(oldP)) {
+                user.setPassword(newP);
+                userService.updateByPrimaryKeySelective(user);
+            } else {
+                return Result.bad("密码错误");
+            }
+        }
+        return Result.ok();
     }
 
     @GetMapping("/notLogin")
