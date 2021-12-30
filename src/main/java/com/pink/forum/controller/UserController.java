@@ -67,7 +67,8 @@ public class UserController {
         User cur = (User) subject.getPrincipal();
         user.setId(cur.getId());
         userMapper.updateByPrimaryKeySelective(user);
-        return Result.ok();
+
+        return Result.ok(user);
     }
 
     /**

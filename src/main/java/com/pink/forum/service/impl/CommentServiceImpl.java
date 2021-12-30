@@ -8,6 +8,7 @@ import com.pink.forum.entity.CommentExample;
 import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.CommentService;
+import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -97,7 +98,6 @@ public class CommentServiceImpl implements CommentService {
     }
 
     private int curId() {
-        Subject subject = SecurityUtils.getSubject();
-        return ((User) subject.getPrincipal()).getId();
+        return ShiroUtils.getUser().getId();
     }
 }

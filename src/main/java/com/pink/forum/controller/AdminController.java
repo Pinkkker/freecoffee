@@ -3,6 +3,7 @@ package com.pink.forum.controller;
 import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.UserService;
+import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -45,15 +46,13 @@ public class AdminController {
 
     @GetMapping("/me")
     public Result getStatus() {
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
+        User user = ShiroUtils.getUser();
         return Result.ok(user);
     }
 
     @PutMapping("/me")
     public Result updateInfo(@RequestBody Map<String, String> data) {
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
+        User user = ShiroUtils.getUser();
         String flag = data.get("flag");
         if ("0".equals(flag)) {
             String username = data.get("username");
@@ -69,7 +68,8 @@ public class AdminController {
                 return Result.bad("密码错误");
             }
         }
-        return Result.ok();
+        ShiroUtils.setUser(user);
+        return Result.ok(user);
     }
 
     @GetMapping("/notLogin")
