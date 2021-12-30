@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: Gitforum
- * @description: 用户接口
- * @author: DengPengfei
- * @create: 2021-12-29 14:17
+ * @program Gitforum
+ * @description 用户接口
+ * @author DengPengfei
+ * @create 2021-12-29 14:17
  **/
 
 @RestController
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     /**
-     * @description: 用户登出
+     * @description 用户登出
      */
     @PostMapping("/logout")
     public Result userLogout() {
@@ -59,31 +59,22 @@ public class UserController {
     }
 
     /**
-     * @description: 更新个人信息
+     * @description 更新个人信息
      */
     @PutMapping("/me")
     public Result updatePersonalInformation(@RequestBody User user) {
         Subject subject = SecurityUtils.getSubject();
-
-        if (subject.isAuthenticated()) {
-            Integer id  = (Integer) subject.getSession().getAttribute("ID");
-            User updateUser = userMapper.selectByPrimaryKey(id);
-
-            updateUser.setName(user.getName());
-            updateUser.setAge(user.getAge());
-            updateUser.setPhoneNumber(user.getPhoneNumber());
-            updateUser.setPassword(user.getPassword());
-
-            userMapper.updateByPrimaryKeySelective(updateUser);
-
-            return Result.ok();
-        }else {
-            return Result.bad();
-        }
+        User updateUser = (User) subject.getPrincipal();
+        updateUser.setName(user.getName());
+        updateUser.setAge(user.getAge());
+        updateUser.setPhoneNumber(user.getPhoneNumber());
+        updateUser.setPassword(user.getPassword());
+        userMapper.updateByPrimaryKeySelective(updateUser);
+        return Result.ok();
     }
 
     /**
-     * @description: 获取当前登录状态
+     * @description 获取当前登录状态
      */
     @GetMapping("/me")
     public Result loginStatus() {
