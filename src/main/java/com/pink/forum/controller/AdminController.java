@@ -11,12 +11,14 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
+@ApiIgnore
 public class AdminController {
 
     final UserService userService;

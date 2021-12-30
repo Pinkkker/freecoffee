@@ -1,7 +1,11 @@
 package com.pink.forum.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
+@ApiModel("评论")
 public class Comment {
     private Integer id;
 
@@ -9,6 +13,7 @@ public class Comment {
 
     private Date time;
 
+    @ApiModelProperty(value = "状态 0表示没被删除 1表示已被删除")
     private Integer status;
 
     private Integer approve;

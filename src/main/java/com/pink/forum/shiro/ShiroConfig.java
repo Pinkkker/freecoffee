@@ -1,7 +1,9 @@
 package com.pink.forum.shiro;
 
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +16,7 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
     //创建realm对象
-    @Bean(name = "myRealm")
+    @Bean
     MyRealm myRealm() {
         MyRealm myRealm = new MyRealm();
         //修改凭证校验匹配器
@@ -49,15 +51,23 @@ public class ShiroConfig {
          */
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/api/v1/login", "anon");
-        filterMap.put("/api/v1/request-sms-code", "anon");
+        filterMap.put("/api/v1/register", "anon");
+        filterMap.put("/api/v1/**", "authc");
         filterMap.put("/admin/login", "anon");
         filterMap.put("/admin/**", "roles[root]");
-        filterMap.put("/**", "authc");
+//        filterMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登陆请求
         bean.setLoginUrl("/admin/notLogin");
         bean.setUnauthorizedUrl("/admin/unauthorized");
 
         return bean;
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
     }
 }
