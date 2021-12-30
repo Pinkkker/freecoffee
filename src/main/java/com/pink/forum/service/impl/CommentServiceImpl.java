@@ -5,16 +5,11 @@ import com.github.pagehelper.PageInfo;
 import com.pink.forum.dao.CommentMapper;
 import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.CommentExample;
-import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.CommentService;
 import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service
 @RequiredArgsConstructor

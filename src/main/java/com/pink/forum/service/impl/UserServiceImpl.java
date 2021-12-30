@@ -5,7 +5,6 @@ import com.pink.forum.entity.User;
 import com.pink.forum.entity.UserExample;
 import com.pink.forum.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +14,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     final UserMapper userMapper;
+
+    @Override
+    public List<User> selectAll() {
+        return userMapper.selectByExample(new UserExample());
+    }
 
     @Override
     public User selectByName(String name) {

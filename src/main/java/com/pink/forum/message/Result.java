@@ -20,6 +20,8 @@ public class Result implements Serializable {
     private int pageSize;
     @ApiModelProperty("总页数")
     private int totalPage;
+    @ApiModelProperty("总条数")
+    private long totalNum;
     @ApiModelProperty("响应码 参考http状态码")
     private String code;
     @ApiModelProperty("响应消息")

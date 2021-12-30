@@ -5,6 +5,7 @@ import com.pink.forum.entity.Post;
 import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.PostService;
+import com.pink.forum.shiro.ShiroUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -33,15 +34,8 @@ public class PostController {
      */
     @ApiOperation("创建新帖")
     @PostMapping("/posts")
-    public Result setPost(@RequestBody Map<String, String> data) {
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-
-        Post post = new Post();
-        post.setUser_id(user.getId());
-        post.setTitle(data.get("title"));
-        post.setContents(data.get("contents"));
-
+    public Result setPost(@RequestBody Post post) {
+        post.setUser_id(ShiroUtils.getUser().getId());
         postService.insertSelective(post);
         return Result.ok(post);
     }

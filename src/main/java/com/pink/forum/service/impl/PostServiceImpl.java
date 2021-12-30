@@ -34,6 +34,7 @@ public class PostServiceImpl implements PostService {
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);
         result.setTotalPage(pageInfo.getPages());
+        result.setTotalNum(pageInfo.getTotal());
         result.setData(pageInfo.getList());
 
         return result;

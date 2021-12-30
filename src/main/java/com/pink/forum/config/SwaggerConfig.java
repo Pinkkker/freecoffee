@@ -1,7 +1,6 @@
 package com.pink.forum.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -21,7 +20,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @EnableKnife4j
 public class SwaggerConfig {
     @Bean
-    public Docket docket(){
+    public Docket docket() {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo()).enable(true)
                 .select()
@@ -32,7 +31,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("forum")
                 .description("项目描述")

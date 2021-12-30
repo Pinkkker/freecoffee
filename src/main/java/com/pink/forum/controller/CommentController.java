@@ -1,15 +1,12 @@
 package com.pink.forum.controller;
 
 import com.pink.forum.entity.Comment;
-import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.CommentService;
 import com.pink.forum.shiro.ShiroUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

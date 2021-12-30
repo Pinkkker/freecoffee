@@ -13,6 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,6 +23,12 @@ import java.util.Map;
 public class AdminController {
 
     final UserService userService;
+
+    @GetMapping("login")
+    public Result getAllUser() {
+        List<User> users = userService.selectAll();
+        return Result.ok(users);
+    }
 
     @PostMapping("/login")
     public Result login(@RequestBody Map<String, String> data) {
