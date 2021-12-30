@@ -111,7 +111,7 @@
       #{status,jdbcType=INTEGER}, #{approve,jdbcType=INTEGER}, #{responseNumber,jdbcType=INTEGER}, 
       #{post_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.Comment">
+  <insert id="insertSelective" parameterType="com.pink.forum.entity.Comment" keyProperty="id" useGeneratedKeys="true">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
