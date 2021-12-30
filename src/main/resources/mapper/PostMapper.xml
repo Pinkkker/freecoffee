@@ -111,7 +111,7 @@
       #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{starred,jdbcType=INTEGER}, 
       #{commentNumber,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.Post">
+  <insert id="insertSelective" parameterType="com.pink.forum.entity.Post" keyProperty="id" useGeneratedKeys="true">
     insert into post
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

@@ -1,10 +1,16 @@
 package com.pink.forum.dao;
 
+import com.github.pagehelper.Page;
 import com.pink.forum.entity.Post;
 import com.pink.forum.entity.PostExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@Mapper
 public interface PostMapper {
     long countByExample(PostExample example);
 
@@ -16,7 +22,7 @@ public interface PostMapper {
 
     int insertSelective(Post record);
 
-    List<Post> selectByExample(PostExample example);
+    Page<Post> selectByExample(PostExample example);
 
     Post selectByPrimaryKey(Integer id);
 
