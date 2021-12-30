@@ -9,7 +9,9 @@ import com.pink.forum.message.Result;
  */
 
 public interface PostService {
-    Result selectAll(int pageSize, int pageNum, int userId);
+    Result selectAll(int pageSize, int pageNum);
+
+    Result selectIdAll(int pageSize, int pageNum, int userId);
 
     Result selectById(int id);
 

@@ -3,7 +3,6 @@ package com.pink.forum.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pink.forum.dao.PostMapper;
-import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.Post;
 import com.pink.forum.entity.PostExample;
 import com.pink.forum.message.Result;
@@ -25,7 +24,23 @@ public class PostServiceImpl implements PostService {
     final PostMapper postMapper;
 
     @Override
-    public Result selectAll(int pageSize, int pageNum, int userId) {
+    public Result selectAll(int pageSize, int pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        PostExample postExample = new PostExample();
+
+        PageInfo<Post> pageInfo = new PageInfo<>(postMapper.selectByExample(postExample));
+
+        Result result = new Result();
+        result.setPageNum(pageNum);
+        result.setPageSize(pageSize);
+        result.setTotalPage(pageInfo.getPages());
+        result.setData(pageInfo.getList());
+
+        return result;
+    }
+
+    @Override
+    public Result selectIdAll(int pageSize, int pageNum, int userId) {
         PageHelper.startPage(pageNum, pageSize);
 
         PostExample postExample = new PostExample();
