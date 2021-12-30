@@ -1,10 +1,16 @@
 package com.pink.forum.dao;
 
+import com.github.pagehelper.Page;
 import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.CommentExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository
 public interface CommentMapper {
     long countByExample(CommentExample example);
 
@@ -16,7 +22,7 @@ public interface CommentMapper {
 
     int insertSelective(Comment record);
 
-    List<Comment> selectByExample(CommentExample example);
+    Page<Comment> selectByExample(CommentExample example);
 
     Comment selectByPrimaryKey(Integer id);
 

@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     final UserMapper userMapper;
 
     @Override

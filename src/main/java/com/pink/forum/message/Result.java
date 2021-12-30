@@ -11,6 +11,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Result implements Serializable {
 
+    private int pageNum;
+    private int pageSize;
+    private int totalPage;
     private String code;
     private String msg;
     private Object data;
