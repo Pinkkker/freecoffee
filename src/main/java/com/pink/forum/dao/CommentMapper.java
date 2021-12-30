@@ -3,8 +3,6 @@ package com.pink.forum.dao;
 import com.github.pagehelper.Page;
 import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.CommentExample;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

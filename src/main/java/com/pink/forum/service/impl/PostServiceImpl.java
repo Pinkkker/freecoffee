@@ -28,6 +28,9 @@ public class PostServiceImpl implements PostService {
         PageHelper.startPage(pageNum, pageSize);
         PostExample postExample = new PostExample();
 
+        PostExample.Criteria criteria = postExample.createCriteria();
+        criteria.andStatusEqualTo(0);
+
         PageInfo<Post> pageInfo = new PageInfo<>(postMapper.selectByExample(postExample));
 
         Result result = new Result();
