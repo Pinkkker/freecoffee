@@ -64,12 +64,9 @@ public class UserController {
     @PutMapping("/me")
     public Result updatePersonalInformation(@RequestBody User user) {
         Subject subject = SecurityUtils.getSubject();
-        User updateUser = (User) subject.getPrincipal();
-        updateUser.setName(user.getName());
-        updateUser.setAge(user.getAge());
-        updateUser.setPhoneNumber(user.getPhoneNumber());
-        updateUser.setPassword(user.getPassword());
-        userMapper.updateByPrimaryKeySelective(updateUser);
+        User cur = (User) subject.getPrincipal();
+        user.setId(cur.getId());
+        userMapper.updateByPrimaryKeySelective(user);
         return Result.ok();
     }
 
@@ -80,11 +77,6 @@ public class UserController {
     public Result loginStatus() {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
-
-        HashMap<String, String> data = new HashMap<>(){{
-            put("username", user.getName());
-        }};
-
-        return Result.ok(data);
+        return Result.ok(user);
     }
 }

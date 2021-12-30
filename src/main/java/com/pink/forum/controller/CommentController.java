@@ -25,11 +25,14 @@ public class CommentController {
         return result;
     }
 
+    @GetMapping("/comments/{id}")
+    public Result selectById(@PathVariable("id") int id) {
+        return commentService.selectById(id);
+    }
+
     @PostMapping("/comments")
     public Result createComment(@RequestBody Comment comment) {
-        Subject subject = SecurityUtils.getSubject();
-        Integer userId = ((User) subject.getPrincipal()).getId();
-        comment.setUser_id(userId);
+        comment.setUser_id(curId());
         commentService.insertSelective(comment);
         return Result.ok(comment);
     }
@@ -39,4 +42,14 @@ public class CommentController {
         return commentService.deleteByPrimaryKey(id);
     }
 
+    @PutMapping("/comments/{id}")
+    public Result updateComment(@PathVariable("id") int id, @RequestBody Comment comment) {
+        comment.setId(id);
+        return commentService.updateByPrimaryKey(comment);
+    }
+
+    private int curId() {
+        Subject subject = SecurityUtils.getSubject();
+        return ((User) subject.getPrincipal()).getId();
+    }
 }

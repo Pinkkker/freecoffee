@@ -11,7 +11,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -48,10 +47,7 @@ public class AdminController {
     public Result getStatus() {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
-        HashMap<String, String> data = new HashMap<>(){{
-            put("username", user.getName());
-        }};
-        return Result.ok(data);
+        return Result.ok(user);
     }
 
     @PutMapping("/me")

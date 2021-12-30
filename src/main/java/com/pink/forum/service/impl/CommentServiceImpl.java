@@ -39,6 +39,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Result selectById(int id) {
+        Comment comment = commentMapper.selectByPrimaryKey(id);
+        if (comment == null) {
+            Result result = new Result();
+            result.setCode("404");
+            result.setMsg("没有这条评论");
+            return result;
+        } else {
+            return Result.ok(comment);
+        }
+    }
+
+    @Override
     public void insertSelective(Comment record) {
         commentMapper.insertSelective(record);
     }
@@ -46,10 +59,35 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Result deleteByPrimaryKey(Integer id) {
         Comment comment = commentMapper.selectByPrimaryKey(id);
+        if (comment == null) {
+            Result result = new Result();
+            result.setCode("404");
+            result.setMsg("没有这条评论");
+            return result;
+        }
         if (comment.getUser_id().equals(curId())) {
             comment.setStatus(1);
             commentMapper.updateByPrimaryKeySelective(comment);
             return Result.ok();
+        } else {
+            Result result = new Result();
+            result.setCode("403");
+            result.setMsg("不是你的评论");
+            return result;
+        }
+    }
+
+    @Override
+    public Result updateByPrimaryKey(Comment record) {
+        if (record.getUser_id().equals(curId())) {
+            int i = commentMapper.updateByPrimaryKeySelective(record);
+            if (i == 0) {
+                Result result = new Result();
+                result.setCode("404");
+                result.setMsg("没有这条评论");
+                return result;
+            }
+            return Result.ok(record);
         } else {
             Result result = new Result();
             result.setCode("403");
