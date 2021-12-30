@@ -46,8 +46,7 @@ public class AdminController {
 
     @GetMapping("/me")
     public Result getStatus() {
-        User user = ShiroUtils.getUser();
-        return Result.ok(user);
+        return Result.ok(ShiroUtils.getUser());
     }
 
     @PutMapping("/me")
@@ -68,7 +67,6 @@ public class AdminController {
                 return Result.bad("密码错误");
             }
         }
-        ShiroUtils.setUser(user);
         return Result.ok(user);
     }
 

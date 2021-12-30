@@ -30,7 +30,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateByPrimaryKeySelective(User record) {
+    public User updateByPrimaryKeySelective(User record) {
         userMapper.updateByPrimaryKeySelective(record);
+        return userMapper.selectByPrimaryKey(record.getId());
+    }
+
+    @Override
+    public int register(String username, String password) {
+        User user = new User();
+        user.setName(username);
+        user.setPassword(password);
+        return userMapper.insertSelective(user);
     }
 }

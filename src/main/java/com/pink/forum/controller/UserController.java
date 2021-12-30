@@ -4,6 +4,8 @@ import com.pink.forum.dao.UserMapper;
 import com.pink.forum.entity.User;
 import com.pink.forum.entity.UserExample;
 import com.pink.forum.message.Result;
+import com.pink.forum.service.UserService;
+import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -28,7 +30,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
 public class UserController {
-    final UserMapper userMapper;
+
+    final UserService userService;
 
     /**
      * 用户登录
@@ -36,7 +39,6 @@ public class UserController {
     @PostMapping("/login")
     public Result userLogin(@RequestBody Map<String, String> data) {
         Subject subject = SecurityUtils.getSubject();
-
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(data.get("username"), data.get("password"));
             subject.login(token);
@@ -53,7 +55,6 @@ public class UserController {
     public Result userLogout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-
         System.out.println("登出");
         return Result.ok();
     }
@@ -66,9 +67,9 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         User cur = (User) subject.getPrincipal();
         user.setId(cur.getId());
-        userMapper.updateByPrimaryKeySelective(user);
-
-        return Result.ok(user);
+        User newUser = userService.updateByPrimaryKeySelective(user);
+        ShiroUtils.setUser(newUser);
+        return Result.ok(newUser);
     }
 
     /**
@@ -76,8 +77,15 @@ public class UserController {
      */
     @GetMapping("/me")
     public Result loginStatus() {
-        Subject subject = SecurityUtils.getSubject();
-        User user = (User) subject.getPrincipal();
-        return Result.ok(user);
+        return Result.ok(ShiroUtils.getUser());
+    }
+
+    @PostMapping("/me")
+    public Result register(@RequestBody Map<String, String> data) {
+        if (userService.register(data.get("username"), data.get("password")) == 1) {
+            return Result.ok();
+        } else {
+            return Result.bad("注册失败");
+        }
     }
 }

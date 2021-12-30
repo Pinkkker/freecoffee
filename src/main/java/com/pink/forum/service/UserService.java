@@ -6,6 +6,7 @@ public interface UserService {
 
     User selectByName(String name);
 
-    void updateByPrimaryKeySelective(User record);
+    User updateByPrimaryKeySelective(User record);
 
+    int register(String username, String password);
 }

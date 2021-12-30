@@ -41,7 +41,6 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         System.out.println("执行认证");
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
-//        UserService userService = (UserService)ApplicationContextUtils.getBean("userService");
         User user = userService.selectByName(userToken.getUsername());
 
         if (user == null) {
