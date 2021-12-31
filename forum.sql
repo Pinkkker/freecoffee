@@ -61,7 +61,7 @@ CREATE TABLE `post` (
   `commentNumber` int NOT NULL DEFAULT '0',
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +70,7 @@ CREATE TABLE `post` (
 
 LOCK TABLES `post` WRITE;
 /*!40000 ALTER TABLE `post` DISABLE KEYS */;
+INSERT INTO `post` VALUES (2,'1','111','2021-12-30 13:46:42',0,0,0,4),(3,'2','222','2021-12-30 13:46:42',0,0,0,4),(4,'3','333','2021-12-30 13:46:42',1,0,0,4),(5,'4','444','2021-12-30 13:46:42',0,0,0,4),(6,'5','555','2021-12-30 13:46:42',0,0,0,4);
 /*!40000 ALTER TABLE `post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,12 +140,11 @@ CREATE TABLE `user` (
   `password` varchar(24) NOT NULL,
   `age` int DEFAULT NULL,
   `phoneNumber` int DEFAULT NULL,
-  `authorization` varchar(10) NOT NULL,
+  `authorization` varchar(10) NOT NULL DEFAULT 'user',
   `registrationTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_name_uindex` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,6 +153,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (4,'cybzzz','123456',NULL,NULL,'root','2021-12-29 08:53:14',0),(5,'张三','123',NULL,NULL,'user','2021-12-29 12:55:15',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-29 16:08:30
+-- Dump completed on 2021-12-31  9:15:15
