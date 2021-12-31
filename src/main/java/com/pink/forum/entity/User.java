@@ -1,13 +1,7 @@
 package com.pink.forum.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.ToString;
-
 import java.util.Date;
 
-@ApiModel("用户")
-@ToString
 public class User {
     private Integer id;
 
@@ -23,8 +17,9 @@ public class User {
 
     private Date registrationTime;
 
-    @ApiModelProperty(value = "状态 0表示没被删除 1表示已被删除")
     private Integer status;
+
+    private String nickName;
 
     public Integer getId() {
         return id;
@@ -88,5 +83,13 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName == null ? null : nickName.trim();
     }
 }

@@ -40,10 +40,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int register(String username, String password) {
+    public int register(String username, String password, String nickName) {
         User user = new User();
         user.setName(username);
         user.setPassword(password);
+        user.setNickName(nickName);
         return userMapper.insertSelective(user);
     }
 }

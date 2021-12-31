@@ -81,10 +81,13 @@ public class UserController {
         return Result.ok(ShiroUtils.getUser());
     }
 
+    /**
+     * @description 注册
+     */
     @ApiOperation("注册")
     @PostMapping("/me")
     public Result register(@RequestBody Request request) {
-        if (userService.register(request.getUsername(), request.getPassword()) == 1) {
+        if (userService.register(request.getUsername(), request.getPassword(), request.getNickName()) == 1) {
             return Result.ok();
         } else {
             return Result.bad("注册失败");

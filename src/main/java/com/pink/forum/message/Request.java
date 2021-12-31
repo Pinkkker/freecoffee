@@ -11,4 +11,6 @@ public class Request {
     private String username;
     @ApiModelProperty(value = "用户密码", example = "123", required = true)
     private String password;
+    @ApiModelProperty(value = "昵称", example = "张三", required = true)
+    private String nickName;
 }

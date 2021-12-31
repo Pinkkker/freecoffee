@@ -10,6 +10,7 @@
     <result column="authorization" jdbcType="VARCHAR" property="authorization" />
     <result column="registrationTime" jdbcType="TIMESTAMP" property="registrationTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="nickName" jdbcType="VARCHAR" property="nickName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, password, age, phoneNumber, authorization, registrationTime, status
+    id, name, password, age, phoneNumber, authorization, registrationTime, status, nickName
   </sql>
   <select id="selectByExample" parameterType="com.pink.forum.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -106,10 +107,12 @@
   <insert id="insert" parameterType="com.pink.forum.entity.User">
     insert into user (id, name, password, 
       age, phoneNumber, authorization, 
-      registrationTime, status)
+      registrationTime, status, nickName
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER}, #{phoneNumber,jdbcType=INTEGER}, #{authorization,jdbcType=VARCHAR}, 
-      #{registrationTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+      #{registrationTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.pink.forum.entity.User">
     insert into user
@@ -138,6 +141,9 @@
       <if test="status != null">
         status,
       </if>
+      <if test="nickName != null">
+        nickName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -163,6 +169,9 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,6 +208,9 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.nickName != null">
+        nickName = #{record.nickName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +225,8 @@
       phoneNumber = #{record.phoneNumber,jdbcType=INTEGER},
       authorization = #{record.authorization,jdbcType=VARCHAR},
       registrationTime = #{record.registrationTime,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      nickName = #{record.nickName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +255,9 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="nickName != null">
+        nickName = #{nickName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -253,7 +269,8 @@
       phoneNumber = #{phoneNumber,jdbcType=INTEGER},
       authorization = #{authorization,jdbcType=VARCHAR},
       registrationTime = #{registrationTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      nickName = #{nickName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
