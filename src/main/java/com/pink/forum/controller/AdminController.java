@@ -1,5 +1,9 @@
 package com.pink.forum.controller;
 
+import com.pink.forum.dao.PostMapper;
+import com.pink.forum.dao.TechnologyStackMapper;
+import com.pink.forum.entity.PostExample;
+import com.pink.forum.entity.TechnologyStackExample;
 import com.pink.forum.entity.User;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.UserService;
@@ -23,6 +27,8 @@ import java.util.Map;
 public class AdminController {
 
     final UserService userService;
+    final TechnologyStackMapper technologyStackMapper;
+    final PostMapper postMapper;
 
     @GetMapping("login")
     public Result getAllUser() {
@@ -77,6 +83,16 @@ public class AdminController {
             }
         }
         return Result.ok(user);
+    }
+
+    @GetMapping("/posts")
+    public Result getPosts() {
+        return Result.ok(postMapper.selectByExample(new PostExample()));
+    }
+
+    @GetMapping("/techs")
+    public Result getTechs() {
+        return Result.ok(technologyStackMapper.selectByExample(new TechnologyStackExample()));
     }
 
     @GetMapping("/notLogin")

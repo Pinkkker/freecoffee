@@ -1,7 +1,11 @@
 package com.pink.forum.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
+@ApiModel("用户")
 public class User {
     private Integer id;
 
@@ -17,6 +21,7 @@ public class User {
 
     private Date registrationTime;
 
+    @ApiModelProperty(value = "状态 0表示未被删除 1表示已被删除")
     private Integer status;
 
     private String nickName;

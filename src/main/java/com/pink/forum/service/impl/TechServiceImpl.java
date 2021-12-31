@@ -18,7 +18,10 @@ public class TechServiceImpl implements TechService {
 
     @Override
     public List<TechnologyStack> selectAll() {
-        return technologyStackMapper.selectByExample(new TechnologyStackExample());
+        TechnologyStackExample technologyStackExample = new TechnologyStackExample();
+        TechnologyStackExample.Criteria criteria = technologyStackExample.createCriteria();
+        criteria.andStatusEqualTo(0);
+        return technologyStackMapper.selectByExample(technologyStackExample);
     }
 
     @Override
