@@ -65,11 +65,25 @@ public class UserController {
     @PutMapping("/me")
     public Result updatePersonalInformation(@RequestBody User user) {
         Subject subject = SecurityUtils.getSubject();
-        User cur = (User) subject.getPrincipal();
-        user.setId(cur.getId());
         User newUser = userService.updateByPrimaryKeySelective(user);
-        ShiroUtils.setUser(newUser);
+        if (!ShiroUtils.getUser().getAuthorization().equals("root")) {
+            ShiroUtils.setUser(newUser);
+        }
         return Result.ok(newUser);
+    }
+
+    /**
+     * @description 删除用户
+     */
+    @ApiOperation("删除用户")
+    @DeleteMapping("/me/{id}")
+    public Result deleteUser(@PathVariable int id) {
+        int res = userService.deleteUser(id);
+        if (res == 1) {
+            return Result.ok();
+        } else {
+            return Result.bad("删除失败");
+        }
     }
 
     /**

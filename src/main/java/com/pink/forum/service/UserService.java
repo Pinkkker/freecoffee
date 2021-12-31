@@ -12,5 +12,7 @@ public interface UserService {
 
     User updateByPrimaryKeySelective(User record);
 
+    int deleteUser(int id);
+
     int register(String username, String password, String nickName);
 }

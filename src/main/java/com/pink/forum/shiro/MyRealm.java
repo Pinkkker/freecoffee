@@ -43,7 +43,7 @@ public class MyRealm extends AuthorizingRealm {
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
         User user = userService.selectByName(userToken.getUsername());
 
-        if (user == null) {
+        if (user == null || user.getStatus() != 0) {
             System.out.println(userToken.getUsername());
             return null; // 抛出UnknownAccountException
         }
