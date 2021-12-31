@@ -3,8 +3,10 @@ package com.pink.forum.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pink.forum.dao.CommentMapper;
+import com.pink.forum.dao.PostMapper;
 import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.CommentExample;
+import com.pink.forum.entity.Post;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.CommentService;
 import com.pink.forum.shiro.ShiroUtils;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class CommentServiceImpl implements CommentService {
 
     final CommentMapper commentMapper;
+    final PostMapper postMapper;
 
 
     @Override
@@ -49,6 +52,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void insertSelective(Comment record) {
+        Post post = postMapper.selectByPrimaryKey(record.getPost_id());
+        post.setCommentNumber(post.getCommentNumber() + 1);
+        postMapper.updateByPrimaryKeySelective(post);
         commentMapper.insertSelective(record);
     }
 
@@ -64,6 +70,9 @@ public class CommentServiceImpl implements CommentService {
         if (comment.getUser_id().equals(curId())) {
             comment.setStatus(1);
             commentMapper.updateByPrimaryKeySelective(comment);
+            Post post = postMapper.selectByPrimaryKey(comment.getPost_id());
+            post.setCommentNumber(post.getCommentNumber() - 1);
+            postMapper.updateByPrimaryKeySelective(post);
             return Result.ok();
         } else {
             Result result = new Result();

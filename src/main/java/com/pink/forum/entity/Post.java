@@ -1,7 +1,10 @@
 package com.pink.forum.entity;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 
+@ApiModel("帖子")
 public class Post {
     private Integer id;
 

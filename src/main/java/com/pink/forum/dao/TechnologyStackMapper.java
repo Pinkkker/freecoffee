@@ -3,8 +3,13 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.TechnologyStack;
 import com.pink.forum.entity.TechnologyStackExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository
 public interface TechnologyStackMapper {
     long countByExample(TechnologyStackExample example);
 

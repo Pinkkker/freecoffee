@@ -104,7 +104,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.TechnologyStack">
+  <insert id="insertSelective" parameterType="com.pink.forum.entity.TechnologyStack" keyProperty="id" useGeneratedKeys="true">
     insert into technologyStack
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

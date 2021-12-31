@@ -1,8 +1,13 @@
 package com.pink.forum.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("技术栈")
 public class TechnologyStack {
     private Integer id;
 
+    @ApiModelProperty(value = "技术栈名", example = "Java", required = true)
     private String name;
 
     private Integer status;
