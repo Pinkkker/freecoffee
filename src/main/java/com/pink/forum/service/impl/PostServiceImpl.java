@@ -1,5 +1,6 @@
 package com.pink.forum.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pink.forum.dao.PostMapper;
@@ -10,6 +11,8 @@ import com.pink.forum.service.PostService;
 import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author DengPengfei
@@ -44,30 +47,24 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Result selectIdAll(int pageSize, int pageNum, int userId) {
-        PageHelper.startPage(pageNum, pageSize);
-
+    public Result selectByUId(int userId) {
         PostExample postExample = new PostExample();
         PostExample.Criteria criteria = postExample.createCriteria();
 
         criteria.andUser_idEqualTo(userId);
         criteria.andStatusEqualTo(0);
 
-        PageInfo<Post> pageInfo = new PageInfo<>(postMapper.selectByExample(postExample));
+        List<Post> posts = postMapper.selectByExample(postExample).getResult();
 
         Result result = new Result();
-        result.setPageNum(pageNum);
-        result.setPageSize(pageSize);
-        result.setTotalPage(pageInfo.getPages());
-        result.setData(pageInfo.getList());
-
+        result.setData(posts);
         return result;
     }
 
     @Override
     public Result selectById(int id) {
         Post post = postMapper.selectByPrimaryKey(id);
-        if (post == null) {
+        if (post == null || post.getStatus() != 0) {
             Result result = new Result();
             result.setCode("404");
             result.setMsg("未找到此帖");

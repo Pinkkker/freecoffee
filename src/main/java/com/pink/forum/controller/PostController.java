@@ -47,21 +47,16 @@ public class PostController {
         return postService.updateByPrimaryKey(post);
     }
 
-    @ApiOperation("查看所有帖子")
+    @ApiOperation("查看帖子")
     @GetMapping("/posts")
-    public Result allPost(@RequestParam("pageSize") String pageSize, @RequestParam("pageNum") String pageNum){
-        Result result = postService.selectAll(Integer.parseInt(pageSize), Integer.parseInt(pageNum));
-
-        result.setCode("200");
-        result.setMsg("OK");
-        return result;
-    }
-
-    @ApiOperation("查看指定用户的帖子")
-    @GetMapping("/posts/{id}")
-    public Result postAll(@RequestParam("pageSize") String pageSize, @RequestParam("pageNum") String pageNum, @RequestParam("postId") String postId){
-        Result result = postService.selectIdAll(Integer.parseInt(pageSize), Integer.parseInt(pageNum), Integer.parseInt(postId));
-
+    public Result allPost(@RequestParam(value = "pageSize", required = false) String pageSize, @RequestParam(value = "pageNum", required = false) String pageNum,
+                          @RequestParam(value = "userId", required = false) String userId){
+        Result result;
+        if (userId == null) {
+            result = postService.selectAll(Integer.parseInt(pageSize), Integer.parseInt(pageNum));
+        } else {
+            result = postService.selectByUId(Integer.parseInt(userId));
+        }
         result.setCode("200");
         result.setMsg("OK");
         return result;

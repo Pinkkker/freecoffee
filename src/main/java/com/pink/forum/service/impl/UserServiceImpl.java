@@ -22,6 +22,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User selectById(int id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public User selectByName(String name) {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
@@ -52,7 +57,11 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(username);
         user.setPassword(password);
-        user.setNickName(nickName);
+        if (nickName != null) {
+            user.setNickName(nickName);
+        } else {
+            user.setNickName(username);
+        }
         return userMapper.insertSelective(user);
     }
 }

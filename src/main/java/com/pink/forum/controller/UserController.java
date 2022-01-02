@@ -95,6 +95,17 @@ public class UserController {
         return Result.ok(ShiroUtils.getUser());
     }
 
+    @ApiOperation("获取指定用户信息")
+    @GetMapping("/me/{id}")
+    public Result getInfo(@PathVariable("id") int id) {
+        User user = userService.selectById(id);
+        if (user != null) {
+            return Result.ok(user);
+        } else {
+            return Result.bad("找不到这个用户");
+        }
+    }
+
     /**
      * @description 注册
      */

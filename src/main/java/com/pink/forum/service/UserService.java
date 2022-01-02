@@ -8,6 +8,8 @@ public interface UserService {
 
     List<User> selectAll();
 
+    User selectById(int id);
+
     User selectByName(String name);
 
     User updateByPrimaryKeySelective(User record);
