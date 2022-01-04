@@ -22,7 +22,9 @@ public class Post {
 
     private Integer user_id;
 
-    public HashMap<TechnologyStack, Integer> techMap;
+    public HashMap<String, Integer> techMap;
+
+    public User user;
 
     public Integer getId() {
         return id;

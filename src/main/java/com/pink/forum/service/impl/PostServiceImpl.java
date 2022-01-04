@@ -8,6 +8,7 @@ import com.pink.forum.entity.*;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.PostService;
 import com.pink.forum.service.UTRService;
+import com.pink.forum.service.UserService;
 import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class PostServiceImpl implements PostService {
     final PostMapper postMapper;
     final UTRService utrService;
     final UserStarPostRelationMapper userStarPostRelationMapper;
+    final UserService userService;
 
     @Override
     public Result selectAll(int pageSize, int pageNum) {
@@ -41,6 +43,7 @@ public class PostServiceImpl implements PostService {
         PageInfo<Post> pageInfo = new PageInfo<>(postMapper.selectByExample(postExample));
         List<Post> posts = pageInfo.getList();
         List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
+        res = res.stream().peek(post -> post.user = userService.selectById(post.getUser_id())).collect(Collectors.toList());
         Result result = new Result();
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);
@@ -61,13 +64,14 @@ public class PostServiceImpl implements PostService {
 
         List<Post> posts = postMapper.selectByExample(postExample).getResult();
         List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
+        res = res.stream().peek(post -> post.user = userService.selectById(post.getUser_id())).collect(Collectors.toList());
         Result result = new Result();
         result.setData(res);
         return result;
     }
 
-    private HashMap<TechnologyStack, Integer> getTech(Post post) {
-        HashMap<TechnologyStack, Integer> map = new HashMap<>();
+    private HashMap<String, Integer> getTech(Post post) {
+        HashMap<String, Integer> map = new HashMap<>();
         UserStarPostRelationExample userStarPostRelationExample = new UserStarPostRelationExample();
         userStarPostRelationExample.createCriteria().andPost_idEqualTo(post.getId());
         List<Integer> idList = userStarPostRelationMapper.selectByExample(userStarPostRelationExample).stream().map(UserStarPostRelation::getUser_id)
@@ -78,7 +82,7 @@ public class PostServiceImpl implements PostService {
         List<List<TechnologyStack>> lists = idList.stream().map(utrService::selectByUserId).collect(Collectors.toList());
         for (List<TechnologyStack> list : lists) {
             for (TechnologyStack tec : list) {
-                map.put(tec, map.getOrDefault(tec, 0) + 1);
+                map.put(tec.getName(), map.getOrDefault(tec.getName(), 0) + 1);
             }
         }
         return map;

@@ -2,11 +2,13 @@ package com.pink.forum.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.ToString;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @ApiModel("用户")
 @ToString
-public class User {
+public class User implements Serializable {
     private Integer id;
 
     private String name;
