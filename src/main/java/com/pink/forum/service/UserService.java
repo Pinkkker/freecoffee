@@ -1,7 +1,6 @@
 package com.pink.forum.service;
 
 import com.pink.forum.entity.User;
-
 import java.util.List;
 
 public interface UserService {

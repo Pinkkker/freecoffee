@@ -6,10 +6,8 @@ import com.pink.forum.entity.TechnologyStack;
 import com.pink.forum.entity.UserTecRelation;
 import com.pink.forum.entity.UserTecRelationExample;
 import com.pink.forum.service.UTRService;
-import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

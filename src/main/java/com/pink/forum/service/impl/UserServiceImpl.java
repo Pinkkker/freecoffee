@@ -6,7 +6,6 @@ import com.pink.forum.entity.UserExample;
 import com.pink.forum.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

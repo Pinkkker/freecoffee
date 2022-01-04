@@ -2,7 +2,6 @@ package com.pink.forum.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.ToString;
-
 import java.util.Date;
 
 @ApiModel("用户")

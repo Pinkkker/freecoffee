@@ -1,7 +1,6 @@
 package com.pink.forum.controller;
 
 import com.pink.forum.entity.TechnologyStack;
-import com.pink.forum.entity.UserTecRelation;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.TechService;
 import com.pink.forum.service.UTRService;
@@ -9,7 +8,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

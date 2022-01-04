@@ -1,7 +1,6 @@
 package com.pink.forum.service;
 
 import com.pink.forum.entity.TechnologyStack;
-
 import java.util.List;
 
 public interface TechService {

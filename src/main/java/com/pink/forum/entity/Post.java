@@ -1,7 +1,6 @@
 package com.pink.forum.entity;
 
 import io.swagger.annotations.ApiModel;
-
 import java.util.Date;
 import java.util.HashMap;
 

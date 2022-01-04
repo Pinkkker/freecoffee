@@ -2,7 +2,6 @@ package com.pink.forum.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Date;
 
 @ApiModel("评论")

@@ -3,7 +3,6 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.FollowRelation;
 import com.pink.forum.entity.FollowRelationExample;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

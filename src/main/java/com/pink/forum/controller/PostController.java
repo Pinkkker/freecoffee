@@ -1,6 +1,5 @@
 package com.pink.forum.controller;
 
-import com.pink.forum.dao.PostMapper;
 import com.pink.forum.dao.UserStarPostRelationMapper;
 import com.pink.forum.entity.Post;
 import com.pink.forum.entity.UserStarPostRelation;

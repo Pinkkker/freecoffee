@@ -3,8 +3,12 @@ package com.pink.forum.dao;
 import com.pink.forum.entity.Response;
 import com.pink.forum.entity.ResponseExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Mapper
+@Repository
 public interface ResponseMapper {
     long countByExample(ResponseExample example);
 
