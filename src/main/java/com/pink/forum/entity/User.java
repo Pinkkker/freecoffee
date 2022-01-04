@@ -1,11 +1,12 @@
 package com.pink.forum.entity;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import lombok.ToString;
 
 import java.util.Date;
 
 @ApiModel("用户")
+@ToString
 public class User {
     private Integer id;
 
@@ -21,10 +22,17 @@ public class User {
 
     private Date registrationTime;
 
-    @ApiModelProperty(value = "状态 0表示未被删除 1表示已被删除")
     private Integer status;
 
-    private String nickName;
+    private String nickname;
+
+    private Integer follows;
+
+    private Integer likes;
+
+    private Integer reputation;
+
+    private String intro;
 
     public Integer getId() {
         return id;
@@ -90,11 +98,43 @@ public class User {
         this.status = status;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName == null ? null : nickName.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Integer getFollows() {
+        return follows;
+    }
+
+    public void setFollows(Integer follows) {
+        this.follows = follows;
+    }
+
+    public Integer getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Integer getReputation() {
+        return reputation;
+    }
+
+    public void setReputation(Integer reputation) {
+        this.reputation = reputation;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro == null ? null : intro.trim();
     }
 }

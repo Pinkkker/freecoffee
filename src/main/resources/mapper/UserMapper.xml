@@ -10,7 +10,11 @@
     <result column="authorization" jdbcType="VARCHAR" property="authorization" />
     <result column="registrationTime" jdbcType="TIMESTAMP" property="registrationTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="nickName" jdbcType="VARCHAR" property="nickName" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="follows" jdbcType="INTEGER" property="follows" />
+    <result column="likes" jdbcType="INTEGER" property="likes" />
+    <result column="Reputation" jdbcType="INTEGER" property="reputation" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, password, age, phoneNumber, authorization, registrationTime, status, nickName
+    id, name, password, age, phoneNumber, authorization, registrationTime, status, nickname, 
+    follows, likes, Reputation, intro
   </sql>
   <select id="selectByExample" parameterType="com.pink.forum.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -107,12 +112,14 @@
   <insert id="insert" parameterType="com.pink.forum.entity.User">
     insert into user (id, name, password, 
       age, phoneNumber, authorization, 
-      registrationTime, status, nickName
-      )
+      registrationTime, status, nickname, 
+      follows, likes, Reputation, 
+      intro)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER}, #{phoneNumber,jdbcType=INTEGER}, #{authorization,jdbcType=VARCHAR}, 
-      #{registrationTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}
-      )
+      #{registrationTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, 
+      #{follows,jdbcType=INTEGER}, #{likes,jdbcType=INTEGER}, #{reputation,jdbcType=INTEGER}, 
+      #{intro,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.pink.forum.entity.User">
     insert into user
@@ -141,8 +148,20 @@
       <if test="status != null">
         status,
       </if>
-      <if test="nickName != null">
-        nickName,
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="follows != null">
+        follows,
+      </if>
+      <if test="likes != null">
+        likes,
+      </if>
+      <if test="reputation != null">
+        Reputation,
+      </if>
+      <if test="intro != null">
+        intro,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -170,8 +189,20 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="follows != null">
+        #{follows,jdbcType=INTEGER},
+      </if>
+      <if test="likes != null">
+        #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="reputation != null">
+        #{reputation,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -208,8 +239,20 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.nickName != null">
-        nickName = #{record.nickName,jdbcType=VARCHAR},
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.follows != null">
+        follows = #{record.follows,jdbcType=INTEGER},
+      </if>
+      <if test="record.likes != null">
+        likes = #{record.likes,jdbcType=INTEGER},
+      </if>
+      <if test="record.reputation != null">
+        Reputation = #{record.reputation,jdbcType=INTEGER},
+      </if>
+      <if test="record.intro != null">
+        intro = #{record.intro,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -226,7 +269,11 @@
       authorization = #{record.authorization,jdbcType=VARCHAR},
       registrationTime = #{record.registrationTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
-      nickName = #{record.nickName,jdbcType=VARCHAR}
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      follows = #{record.follows,jdbcType=INTEGER},
+      likes = #{record.likes,jdbcType=INTEGER},
+      Reputation = #{record.reputation,jdbcType=INTEGER},
+      intro = #{record.intro,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -255,8 +302,20 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="nickName != null">
-        nickName = #{nickName,jdbcType=VARCHAR},
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="follows != null">
+        follows = #{follows,jdbcType=INTEGER},
+      </if>
+      <if test="likes != null">
+        likes = #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="reputation != null">
+        Reputation = #{reputation,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -270,7 +329,11 @@
       authorization = #{authorization,jdbcType=VARCHAR},
       registrationTime = #{registrationTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
-      nickName = #{nickName,jdbcType=VARCHAR}
+      nickname = #{nickname,jdbcType=VARCHAR},
+      follows = #{follows,jdbcType=INTEGER},
+      likes = #{likes,jdbcType=INTEGER},
+      Reputation = #{reputation,jdbcType=INTEGER},
+      intro = #{intro,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

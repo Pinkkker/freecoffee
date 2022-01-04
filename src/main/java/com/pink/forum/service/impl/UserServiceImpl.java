@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService {
         user.setName(username);
         user.setPassword(password);
         if (nickName != null) {
-            user.setNickName(nickName);
+            user.setNickname(nickName);
         } else {
-            user.setNickName(username);
+            user.setNickname(username);
         }
         return userMapper.insertSelective(user);
     }

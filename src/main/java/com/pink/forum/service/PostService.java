@@ -19,4 +19,8 @@ public interface PostService {
     Result deleteByPrimaryKey(Integer id);
 
     Result updateByPrimaryKey(Post record);
+
+    void star(int postId);
+
+    void unStar(int postId);
 }

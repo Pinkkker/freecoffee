@@ -1,6 +1,10 @@
 package com.pink.forum.controller;
 
+import com.pink.forum.dao.PostMapper;
+import com.pink.forum.dao.UserStarPostRelationMapper;
 import com.pink.forum.entity.Post;
+import com.pink.forum.entity.UserStarPostRelation;
+import com.pink.forum.entity.UserStarPostRelationExample;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.PostService;
 import com.pink.forum.shiro.ShiroUtils;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "铁汁管理")
 public class PostController {
     final PostService postService;
+    final UserStarPostRelationMapper userStarPostRelationMapper;
 
     /**
      * @description 创建帖子
@@ -60,5 +65,35 @@ public class PostController {
         result.setCode("200");
         result.setMsg("OK");
         return result;
+    }
+
+    @ApiOperation("点赞")
+    @PostMapping("/star/{id}")
+    public Result star(@PathVariable("id") int postId, @RequestBody int userId) {
+        UserStarPostRelation userStarPostRelation = new UserStarPostRelation();
+        userStarPostRelation.setPost_id(postId);
+        userStarPostRelation.setUser_id(userId);
+        int res = userStarPostRelationMapper.insertSelective(userStarPostRelation);
+        if (res == 0) {
+            return Result.bad("点赞失败");
+        } else {
+            return Result.ok();
+        }
+    }
+
+    @ApiOperation("取消点赞")
+    @DeleteMapping("/star/{id}")
+    public Result unStar(@PathVariable("id") int postId, @RequestBody int userId) {
+        UserStarPostRelationExample userStarPostRelationExample = new UserStarPostRelationExample();
+        UserStarPostRelationExample.Criteria criteria = userStarPostRelationExample.createCriteria();
+        criteria.andPost_idEqualTo(postId);
+        criteria.andPost_idEqualTo(userId);
+        int res = userStarPostRelationMapper.deleteByExample(userStarPostRelationExample);
+        if (res == 0) {
+            return Result.bad("取消点赞失败");
+        } else {
+            postService.unStar(postId);
+            return Result.ok();
+        }
     }
 }

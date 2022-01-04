@@ -4,15 +4,18 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pink.forum.dao.PostMapper;
-import com.pink.forum.entity.Post;
-import com.pink.forum.entity.PostExample;
+import com.pink.forum.dao.UserStarPostRelationMapper;
+import com.pink.forum.entity.*;
 import com.pink.forum.message.Result;
 import com.pink.forum.service.PostService;
+import com.pink.forum.service.UTRService;
 import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author DengPengfei
@@ -25,6 +28,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     final PostMapper postMapper;
+    final UTRService utrService;
+    final UserStarPostRelationMapper userStarPostRelationMapper;
 
     @Override
     public Result selectAll(int pageSize, int pageNum) {
@@ -35,13 +40,14 @@ public class PostServiceImpl implements PostService {
         criteria.andStatusEqualTo(0);
 
         PageInfo<Post> pageInfo = new PageInfo<>(postMapper.selectByExample(postExample));
-
+        List<Post> posts = pageInfo.getList();
+        List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
         Result result = new Result();
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);
         result.setTotalPage(pageInfo.getPages());
         result.setTotalNum(pageInfo.getTotal());
-        result.setData(pageInfo.getList());
+        result.setData(res);
 
         return result;
     }
@@ -55,10 +61,28 @@ public class PostServiceImpl implements PostService {
         criteria.andStatusEqualTo(0);
 
         List<Post> posts = postMapper.selectByExample(postExample).getResult();
-
+        List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
         Result result = new Result();
-        result.setData(posts);
+        result.setData(res);
         return result;
+    }
+
+    private HashMap<TechnologyStack, Integer> getTech(Post post) {
+        HashMap<TechnologyStack, Integer> map = new HashMap<>();
+        UserStarPostRelationExample userStarPostRelationExample = new UserStarPostRelationExample();
+        userStarPostRelationExample.createCriteria().andPost_idEqualTo(post.getId());
+        List<Integer> idList = userStarPostRelationMapper.selectByExample(userStarPostRelationExample).stream().map(UserStarPostRelation::getUser_id)
+                .collect(Collectors.toList());
+        if (!idList.contains(post.getUser_id())) {
+            idList.add(post.getUser_id());
+        }
+        List<List<TechnologyStack>> lists = idList.stream().map(utrService::selectByUserId).collect(Collectors.toList());
+        for (List<TechnologyStack> list : lists) {
+            for (TechnologyStack tec : list) {
+                map.put(tec, map.getOrDefault(tec, 0) + 1);
+            }
+        }
+        return map;
     }
 
     @Override
@@ -118,6 +142,20 @@ public class PostServiceImpl implements PostService {
             result.setMsg("这不是你的帖子");
             return result;
         }
+    }
+
+    @Override
+    public void star(int postId) {
+        Post post = postMapper.selectByPrimaryKey(postId);
+        post.setStarred(post.getStarred() + 1);
+        postMapper.updateByPrimaryKey(post);
+    }
+
+    @Override
+    public void unStar(int postId) {
+        Post post = postMapper.selectByPrimaryKey(postId);
+        post.setStarred(post.getStarred() - 1);
+        postMapper.updateByPrimaryKey(post);
     }
 
     private int curId() {

@@ -3,6 +3,7 @@ package com.pink.forum.entity;
 import io.swagger.annotations.ApiModel;
 
 import java.util.Date;
+import java.util.HashMap;
 
 @ApiModel("帖子")
 public class Post {
@@ -21,6 +22,8 @@ public class Post {
     private Integer commentNumber;
 
     private Integer user_id;
+
+    public HashMap<TechnologyStack, Integer> techMap;
 
     public Integer getId() {
         return id;
