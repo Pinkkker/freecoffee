@@ -66,6 +66,12 @@ public class PostController {
         return result;
     }
 
+    @ApiOperation("查看指定帖子")
+    @GetMapping("posts/{id}")
+    public Result selectPostById(@PathVariable("id") int id) {
+        return postService.selectById(id);
+    }
+
     @ApiOperation("点赞")
     @PostMapping("/star/{id}")
     public Result star(@PathVariable("id") int postId, @RequestBody int userId) {
