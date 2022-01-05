@@ -23,6 +23,8 @@ public class Comment {
 
     private Integer user_id;
 
+    public User user;
+
     public Integer getId() {
         return id;
     }

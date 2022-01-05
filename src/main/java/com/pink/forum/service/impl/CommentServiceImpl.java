@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pink.forum.dao.CommentMapper;
 import com.pink.forum.dao.PostMapper;
+import com.pink.forum.dao.UserMapper;
 import com.pink.forum.entity.Comment;
 import com.pink.forum.entity.CommentExample;
 import com.pink.forum.entity.Post;
@@ -13,12 +14,16 @@ import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
     final CommentMapper commentMapper;
     final PostMapper postMapper;
+    final UserMapper userMapper;
 
 
     @Override
@@ -29,11 +34,13 @@ public class CommentServiceImpl implements CommentService {
         criteria.andPost_idEqualTo(postId);
         criteria.andStatusEqualTo(0);
         PageInfo<Comment> pageInfo = new PageInfo<>(commentMapper.selectByExample(commentExample));
+        List<Comment> list = pageInfo.getList();
+        list = list.stream().peek(comment -> comment.user = userMapper.selectByPrimaryKey(comment.getUser_id())).collect(Collectors.toList());
         Result result = new Result();
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);
         result.setTotalPage(pageInfo.getPages());
-        result.setData(pageInfo.getList());
+        result.setData(list);
         return result;
     }
 
