@@ -30,14 +30,14 @@ public class GithubLoginController {
     }
 
 
-    @GetMapping("/authorization_code")
+    @GetMapping("/main.html")
     public String authorizationCode(String code, String state) throws JsonProcessingException {
         Map<String, String> map = new HashMap<>();
         map.put("client_id", "da8c28bcfd991b5b2774");
         map.put("client_secret", "bb5e4ba3f6737e60d37e76c4a5d59841697ba7c7");
         map.put("state", state);
         map.put("code", code);
-        map.put("redirect_uri", "http://localhost:8080/authorization_code");
+        map.put("redirect_uri", "http://localhost:8080/main.html");
         Map<String,String> resp = restTemplate.postForObject("https://github.com/login/oauth/access_token", map, Map.class);
         System.out.println(resp);
         HttpHeaders httpheaders = new HttpHeaders();
@@ -46,6 +46,6 @@ public class GithubLoginController {
         HttpEntity<?> httpEntity = new HttpEntity<>(httpheaders);
         ResponseEntity<Map> exchange = restTemplate.exchange("https://api.github.com/user", HttpMethod.GET, httpEntity, Map.class);
         System.out.println("exchange.getBody() = " + new ObjectMapper().writeValueAsString(exchange.getBody()));
-        return "forward:/mian.html";
+        return "main";
     }
 }
