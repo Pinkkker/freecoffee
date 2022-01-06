@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface PostMapper {
@@ -21,6 +23,8 @@ public interface PostMapper {
     int insertSelective(Post record);
 
     Page<Post> selectByExample(PostExample example);
+
+    List<Post> selectByKeyWord(String keyWord);
 
     Post selectByPrimaryKey(Integer id);
 

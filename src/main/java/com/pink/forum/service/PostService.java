@@ -12,6 +12,8 @@ public interface PostService {
 
     Result selectByUId(int userId);
 
+    Result selectByKeyWord(String keyWord);
+
     Result selectById(int id);
 
     void insertSelective(Post record);

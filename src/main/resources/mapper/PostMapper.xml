@@ -93,6 +93,12 @@
     from post
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByKeyWord" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from post
+    where title like #{keyWord,jdbcType=CHAR} or contents like #{keyWord,jdbcType=CHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from post
     where id = #{id,jdbcType=INTEGER}

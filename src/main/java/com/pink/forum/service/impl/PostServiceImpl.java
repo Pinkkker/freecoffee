@@ -50,7 +50,6 @@ public class PostServiceImpl implements PostService {
         result.setTotalPage(pageInfo.getPages());
         result.setTotalNum(pageInfo.getTotal());
         result.setData(res);
-
         return result;
     }
 
@@ -144,6 +143,22 @@ public class PostServiceImpl implements PostService {
             result.setCode("403");
             result.setMsg("这不是你的帖子");
             return result;
+        }
+    }
+
+    @Override
+    public Result selectByKeyWord(String ketWord) {
+        List<Post> posts = postMapper.selectByKeyWord("%" + ketWord + "%");
+        System.out.println(posts);
+        if (posts == null) {
+            Result result = new Result();
+            result.setCode("404");
+            result.setMsg("没有找到");
+            return result;
+        }else {
+            List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
+            res = res.stream().peek(post -> post.user = userService.selectById(post.getUser_id())).collect(Collectors.toList());
+            return Result.ok(res);
         }
     }
 

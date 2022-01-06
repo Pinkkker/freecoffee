@@ -65,13 +65,18 @@ public class PostController {
         result.setMsg("OK");
         return result;
     }
-
     @ApiOperation("查看指定帖子")
     @GetMapping("posts/{id}")
     public Result selectPostById(@PathVariable("id") int id) {
         return postService.selectById(id);
     }
-
+    @ApiOperation("搜索帖子")
+    @GetMapping("/search")
+    public Result searchPost(@RequestParam(value = "keyWord") String keyWord) {
+        System.out.println(postService.selectByKeyWord(keyWord));
+        System.out.println(keyWord);
+        return postService.selectByKeyWord(keyWord);
+    }
     @ApiOperation("点赞")
     @PostMapping("/star/{id}")
     public Result star(@PathVariable("id") int postId, @RequestBody int userId) {
