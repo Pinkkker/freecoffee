@@ -3,12 +3,11 @@ package com.pink.forum.entity;
 import io.swagger.annotations.ApiModel;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.Date;
 
-@ApiModel("用户")
 @ToString
-public class User implements Serializable {
+@ApiModel("用户")
+public class User {
     private Integer id;
 
     private String name;
@@ -34,6 +33,8 @@ public class User implements Serializable {
     private Integer reputation;
 
     private String intro;
+
+    private String avatar;
 
     public Integer getId() {
         return id;
@@ -137,5 +138,13 @@ public class User implements Serializable {
 
     public void setIntro(String intro) {
         this.intro = intro == null ? null : intro.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
     }
 }

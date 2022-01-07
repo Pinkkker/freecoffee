@@ -26,7 +26,7 @@ public class Post {
 
     public User user;
 
-    public boolean isStar = false;
+    public boolean isStar;
 
     public Integer getId() {
         return id;

@@ -94,10 +94,11 @@ public class PostController {
     @ApiOperation("取消点赞")
     @DeleteMapping("/star/{id}")
     public Result unStar(@PathVariable("id") int postId, @RequestBody int userId) {
+        System.out.println(postId +" "+ userId);
         UserStarPostRelationExample userStarPostRelationExample = new UserStarPostRelationExample();
         UserStarPostRelationExample.Criteria criteria = userStarPostRelationExample.createCriteria();
         criteria.andPost_idEqualTo(postId);
-        criteria.andPost_idEqualTo(userId);
+        criteria.andUser_idEqualTo(userId);
         int res = userStarPostRelationMapper.deleteByExample(userStarPostRelationExample);
         if (res == 0) {
             return Result.bad("取消点赞失败");

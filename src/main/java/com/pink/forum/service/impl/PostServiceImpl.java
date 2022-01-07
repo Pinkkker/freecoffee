@@ -44,7 +44,7 @@ public class PostServiceImpl implements PostService {
         List<Post> posts = pageInfo.getList();
         List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
         res = res.stream().peek(post -> post.user = userService.selectById(post.getUser_id())).collect(Collectors.toList());
-        res = res.stream().peek(post -> post.isStar = isStar(post.getId(), post.getUser_id())).collect(Collectors.toList());
+        res = res.stream().peek(post -> post.isStar = isStar(post.getId(), ShiroUtils.getUser().getId())).collect(Collectors.toList());
         Result result = new Result();
         result.setPageNum(pageNum);
         result.setPageSize(pageSize);
@@ -65,7 +65,7 @@ public class PostServiceImpl implements PostService {
         List<Post> posts = postMapper.selectByExample(postExample).getResult();
         List<Post> res = posts.stream().peek(post -> post.techMap = getTech(post)).collect(Collectors.toList());
         res = res.stream().peek(post -> post.user = userService.selectById(post.getUser_id())).collect(Collectors.toList());
-        res = res.stream().peek(post -> post.isStar = isStar(post.getId(), post.getUser_id())).collect(Collectors.toList());
+        res = res.stream().peek(post -> post.isStar = isStar(post.getId(), ShiroUtils.getUser().getId())).collect(Collectors.toList());
         Result result = new Result();
         result.setData(res);
         return result;

@@ -49,10 +49,11 @@ public class ShiroConfig {
          */
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/api/v1/login", "anon");
-        filterMap.put("/api/v1/register", "authc");
+        filterMap.put("/api/v1/me", "anon");
         filterMap.put("/api/v1/**", "authc");
         filterMap.put("/admin/login", "anon");
         filterMap.put("/admin/**", "roles[root]");
+        filterMap.put("/**", "anon");
 //        filterMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登陆请求

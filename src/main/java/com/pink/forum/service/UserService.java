@@ -16,4 +16,6 @@ public interface UserService {
     int deleteUser(int id);
 
     int register(String username, String password, String nickName);
+
+    int updateAvatar(String name);
 }

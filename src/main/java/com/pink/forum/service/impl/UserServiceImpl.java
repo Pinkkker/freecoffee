@@ -4,6 +4,7 @@ import com.pink.forum.dao.UserMapper;
 import com.pink.forum.entity.User;
 import com.pink.forum.entity.UserExample;
 import com.pink.forum.service.UserService;
+import com.pink.forum.shiro.ShiroUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -62,5 +63,12 @@ public class UserServiceImpl implements UserService {
             user.setNickname(username);
         }
         return userMapper.insertSelective(user);
+    }
+
+    @Override
+    public int updateAvatar(String name) {
+        User user = ShiroUtils.getUser();
+        user.setAvatar(name);
+        return userMapper.updateByPrimaryKey(user);
     }
 }
