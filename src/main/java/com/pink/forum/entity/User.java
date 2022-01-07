@@ -36,6 +36,8 @@ public class User {
 
     private String avatar;
 
+    private String userId;
+
     public Integer getId() {
         return id;
     }
@@ -146,5 +148,13 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar == null ? null : avatar.trim();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 }

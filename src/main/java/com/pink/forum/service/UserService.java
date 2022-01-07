@@ -17,5 +17,7 @@ public interface UserService {
 
     int register(String username, String password, String nickName);
 
+    int githubRegister(String username, String userId, String usrAvatar);
+
     int updateAvatar(String name);
 }

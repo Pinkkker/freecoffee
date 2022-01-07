@@ -71,4 +71,17 @@ public class UserServiceImpl implements UserService {
         user.setAvatar(name);
         return userMapper.updateByPrimaryKey(user);
     }
+
+    @Override
+    public int githubRegister(String username, String userId, String userAvatar) {
+        User user = new User();
+        user.setName(username);
+        //默认密码123456
+        user.setPassword("123456");
+        user.setNickname(username);
+        user.setUserId(userId);
+        user.setAvatar(userAvatar);
+
+        return userMapper.insertSelective(user);
+    }
 }
