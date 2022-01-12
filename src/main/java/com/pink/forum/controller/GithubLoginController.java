@@ -71,7 +71,7 @@ public class GithubLoginController {
         System.out.println("exchange.getBody() = " + userId);
         System.out.println("exchange.getBody() = " + userAvatar);
 
-        if (userService.githubRegister(username.substring(1, username.length()-1), userId.substring(1, userId.length()-1), userAvatar.substring(1, userAvatar.length()-1)) != 1) {
+        if (userService.githubRegister(username, userId, userAvatar) != 1) {
             return "fail";
         }
 
