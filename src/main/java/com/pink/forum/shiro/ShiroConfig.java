@@ -48,14 +48,14 @@ public class ShiroConfig {
             role: 拥有对某个角色的权限才能访问
          */
         Map<String, String> filterMap = new LinkedHashMap<>();
-//        filterMap.put("/api/v1/login", "anon");
-//        filterMap.put("/api/v1/me", "anon");
-//        filterMap.put("api/v1/github", "anon");
-//        filterMap.put("/api/v1/**", "authc");
-//        filterMap.put("/admin/login", "anon");
-//        filterMap.put("/admin/**", "roles[root]");
-        filterMap.put("/**", "anon");
-//        filterMap.put("/**", "authc");
+        filterMap.put("/api/v1/login", "anon");
+        filterMap.put("/api/v1/me", "anon");
+        filterMap.put("/api/v1/**", "authc");
+        filterMap.put("/admin/ping", "anon");
+        filterMap.put("/admin/login", "anon");
+        filterMap.put("/admin/**", "roles[root]");
+        filterMap.put("/success.html","anon");
+        filterMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登陆请求
         bean.setLoginUrl("/admin/notLogin");

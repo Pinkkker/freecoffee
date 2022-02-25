@@ -30,10 +30,15 @@ public class AdminController {
     final TechnologyStackMapper technologyStackMapper;
     final PostMapper postMapper;
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public Result getAllUser() {
         List<User> users = userService.selectAll();
         return Result.ok(users);
+    }
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "pong";
     }
 
     @PostMapping("/login")

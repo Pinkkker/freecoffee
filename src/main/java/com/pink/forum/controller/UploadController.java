@@ -23,7 +23,7 @@ public class UploadController {
     @PostMapping("/upload")
     public Result fileupload(MultipartFile file, HttpServletRequest req) {
         String originName = file.getOriginalFilename();
-        String realPath = "/home/crush/image";
+        String realPath = "/home/cyb/image";
         File folder = new File(realPath);
         if (!folder.exists()) {
             folder.mkdirs();
@@ -35,7 +35,7 @@ public class UploadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int res = userService.updateAvatar("http://localhost/" + newName);
+        int res = userService.updateAvatar("http://www.cybzzz.tk/image/" + newName);
         if (res == 0) {
             return Result.bad("修改失败");
         } else {
