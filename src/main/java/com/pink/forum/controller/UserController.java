@@ -66,7 +66,7 @@ public class UserController {
     public Result updatePersonalInformation(@RequestBody User user) {
         Subject subject = SecurityUtils.getSubject();
         User newUser = userService.updateByPrimaryKeySelective(user);
-        if (!ShiroUtils.getUser().getAuthorization().equals("root")) {
+        if (!"root".equals(ShiroUtils.getUser().getAuthorization())) {
             ShiroUtils.setUser(newUser);
         }
         return Result.ok(newUser);
@@ -92,7 +92,12 @@ public class UserController {
     @ApiOperation("获取当前登录状态")
     @GetMapping("/me")
     public Result loginStatus() {
-        return Result.ok(ShiroUtils.getUser());
+        User user = ShiroUtils.getUser();
+        if (user != null) {
+            return Result.ok(user);
+        } else {
+            return Result.bad("未登录");
+        }
     }
 
     @ApiOperation("获取指定用户信息")

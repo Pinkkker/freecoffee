@@ -52,6 +52,7 @@ public class ShiroConfig {
         filterMap.put("/api/v1/me", "anon");
         filterMap.put("/api/v1/**", "authc");
         filterMap.put("/admin/ping", "anon");
+        filterMap.put("/admin/notLogin", "anon");
         filterMap.put("/admin/login", "anon");
         filterMap.put("/admin/**", "roles[root]");
         filterMap.put("/success.html","anon");
