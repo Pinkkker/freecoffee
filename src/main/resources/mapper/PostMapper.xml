@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pink.forum.dao.PostMapper">
+<mapper namespace="com.pink.freecoffee.dao.PostMapper">
   <resultMap id="BaseResultMap" type="com.pink.freecoffee.entity.Post">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
