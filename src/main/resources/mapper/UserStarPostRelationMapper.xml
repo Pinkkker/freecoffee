@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pink.forum.dao.UserStarPostRelationMapper">
-  <resultMap id="BaseResultMap" type="com.pink.forum.entity.UserStarPostRelation">
+  <resultMap id="BaseResultMap" type="com.pink.freecoffee.entity.UserStarPostRelation">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="user_id" />
     <result column="post_id" jdbcType="INTEGER" property="post_id" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     id, user_id, post_id
   </sql>
-  <select id="selectByExample" parameterType="com.pink.forum.entity.UserStarPostRelationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pink.freecoffee.entity.UserStarPostRelationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from user_starP_relation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pink.forum.entity.UserStarPostRelationExample">
+  <delete id="deleteByExample" parameterType="com.pink.freecoffee.entity.UserStarPostRelationExample">
     delete from user_starP_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pink.forum.entity.UserStarPostRelation">
+  <insert id="insert" parameterType="com.pink.freecoffee.entity.UserStarPostRelation">
     insert into user_starP_relation (id, user_id, post_id
       )
     values (#{id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, #{post_id,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.UserStarPostRelation">
+  <insert id="insertSelective" parameterType="com.pink.freecoffee.entity.UserStarPostRelation">
     insert into user_starP_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -129,7 +129,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pink.forum.entity.UserStarPostRelationExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.pink.freecoffee.entity.UserStarPostRelationExample" resultType="java.lang.Long">
     select count(*) from user_starP_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -161,7 +161,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pink.forum.entity.UserStarPostRelation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.pink.freecoffee.entity.UserStarPostRelation">
     update user_starP_relation
     <set>
       <if test="user_id != null">
@@ -173,7 +173,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pink.forum.entity.UserStarPostRelation">
+  <update id="updateByPrimaryKey" parameterType="com.pink.freecoffee.entity.UserStarPostRelation">
     update user_starP_relation
     set user_id = #{user_id,jdbcType=INTEGER},
       post_id = #{post_id,jdbcType=INTEGER}

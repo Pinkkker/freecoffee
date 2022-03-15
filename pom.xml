@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>Gitforum</artifactId>
+    <artifactId>freecoffee</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Gitforum</name>
-    <description>Gitforum</description>
+    <name>freecoffee</name>
+    <description>freecoffee</description>
     <properties>
         <java.version>11</java.version>
         <druid.version>1.2.8</druid.version>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pink.forum.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.pink.forum.entity.User">
+  <resultMap id="BaseResultMap" type="com.pink.freecoffee.entity.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -79,7 +79,7 @@
     id, name, password, age, phoneNumber, authorization, registrationTime, status, nickname, 
     follows, likes, Reputation, intro, avatar
   </sql>
-  <select id="selectByExample" parameterType="com.pink.forum.entity.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pink.freecoffee.entity.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -104,13 +104,13 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pink.forum.entity.UserExample">
+  <delete id="deleteByExample" parameterType="com.pink.freecoffee.entity.UserExample">
     delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pink.forum.entity.User">
+  <insert id="insert" parameterType="com.pink.freecoffee.entity.User">
     insert into user (id, name, password, 
       age, phoneNumber, authorization, 
       registrationTime, status, nickname, 
@@ -122,7 +122,7 @@
       #{follows,jdbcType=INTEGER}, #{likes,jdbcType=INTEGER}, #{reputation,jdbcType=INTEGER}, 
       #{intro,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.User">
+  <insert id="insertSelective" parameterType="com.pink.freecoffee.entity.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -213,7 +213,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pink.forum.entity.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.pink.freecoffee.entity.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -289,7 +289,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pink.forum.entity.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.pink.freecoffee.entity.User">
     update user
     <set>
       <if test="name != null">
@@ -334,7 +334,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pink.forum.entity.User">
+  <update id="updateByPrimaryKey" parameterType="com.pink.freecoffee.entity.User">
     update user
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

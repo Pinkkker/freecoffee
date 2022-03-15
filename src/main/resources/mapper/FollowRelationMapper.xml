@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pink.forum.dao.FollowRelationMapper">
-  <resultMap id="BaseResultMap" type="com.pink.forum.entity.FollowRelation">
+  <resultMap id="BaseResultMap" type="com.pink.freecoffee.entity.FollowRelation">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="followers_id" jdbcType="INTEGER" property="followers_id" />
     <result column="following_id" jdbcType="INTEGER" property="following_id" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     id, followers_id, following_id
   </sql>
-  <select id="selectByExample" parameterType="com.pink.forum.entity.FollowRelationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pink.freecoffee.entity.FollowRelationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from t_follow
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pink.forum.entity.FollowRelationExample">
+  <delete id="deleteByExample" parameterType="com.pink.freecoffee.entity.FollowRelationExample">
     delete from t_follow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pink.forum.entity.FollowRelation">
+  <insert id="insert" parameterType="com.pink.freecoffee.entity.FollowRelation">
     insert into t_follow (id, followers_id, following_id
       )
     values (#{id,jdbcType=INTEGER}, #{followers_id,jdbcType=INTEGER}, #{following_id,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.FollowRelation">
+  <insert id="insertSelective" parameterType="com.pink.freecoffee.entity.FollowRelation">
     insert into t_follow
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -129,7 +129,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pink.forum.entity.FollowRelationExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.pink.freecoffee.entity.FollowRelationExample" resultType="java.lang.Long">
     select count(*) from t_follow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -161,7 +161,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pink.forum.entity.FollowRelation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.pink.freecoffee.entity.FollowRelation">
     update t_follow
     <set>
       <if test="followers_id != null">
@@ -173,7 +173,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pink.forum.entity.FollowRelation">
+  <update id="updateByPrimaryKey" parameterType="com.pink.freecoffee.entity.FollowRelation">
     update t_follow
     set followers_id = #{followers_id,jdbcType=INTEGER},
       following_id = #{following_id,jdbcType=INTEGER}

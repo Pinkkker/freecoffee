@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pink.forum.dao.CommentMapper">
-  <resultMap id="BaseResultMap" type="com.pink.forum.entity.Comment">
+  <resultMap id="BaseResultMap" type="com.pink.freecoffee.entity.Comment">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="contents" jdbcType="VARCHAR" property="contents" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     id, contents, time, status, approve, responseNumber, post_id, user_id
   </sql>
-  <select id="selectByExample" parameterType="com.pink.forum.entity.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.pink.freecoffee.entity.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pink.forum.entity.CommentExample">
+  <delete id="deleteByExample" parameterType="com.pink.freecoffee.entity.CommentExample">
     delete from comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pink.forum.entity.Comment">
+  <insert id="insert" parameterType="com.pink.freecoffee.entity.Comment">
     insert into comment (id, contents, time, 
       status, approve, responseNumber, 
       post_id, user_id)
@@ -111,7 +111,7 @@
       #{status,jdbcType=INTEGER}, #{approve,jdbcType=INTEGER}, #{responseNumber,jdbcType=INTEGER}, 
       #{post_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.pink.forum.entity.Comment" keyProperty="id" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.pink.freecoffee.entity.Comment" keyProperty="id" useGeneratedKeys="true">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -166,7 +166,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pink.forum.entity.CommentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.pink.freecoffee.entity.CommentExample" resultType="java.lang.Long">
     select count(*) from comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -218,7 +218,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pink.forum.entity.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.pink.freecoffee.entity.Comment">
     update comment
     <set>
       <if test="contents != null">
@@ -245,7 +245,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pink.forum.entity.Comment">
+  <update id="updateByPrimaryKey" parameterType="com.pink.freecoffee.entity.Comment">
     update comment
     set contents = #{contents,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP},
