@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 mvnw.cmd
 mvnw
+src/main/resources/application*
 
 ### IntelliJ IDEA ###
 .idea

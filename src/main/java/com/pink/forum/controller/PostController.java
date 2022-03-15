@@ -73,8 +73,6 @@ public class PostController {
     @ApiOperation("搜索帖子")
     @GetMapping("/search")
     public Result searchPost(@RequestParam(value = "keyWord") String keyWord) {
-        System.out.println(postService.selectByKeyWord(keyWord));
-        System.out.println(keyWord);
         return postService.selectByKeyWord(keyWord);
     }
     @ApiOperation("点赞")

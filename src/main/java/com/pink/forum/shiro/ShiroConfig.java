@@ -1,10 +1,10 @@
 package com.pink.forum.shiro;
 
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -27,18 +27,18 @@ public class ShiroConfig {
 
     //安全管理器
     @Bean
-    DefaultWebSecurityManager securityManager(MyRealm myRealm) {
+    DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
         //关联realm
-        manager.setRealm(myRealm);
+        manager.setRealm(myRealm());
         return manager;
     }
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置安全管理器
-        bean.setSecurityManager(securityManager);
+        bean.setSecurityManager(securityManager());
         //添加过滤器 拦截
         /*
             anon: 无需认证
@@ -52,23 +52,17 @@ public class ShiroConfig {
         filterMap.put("/api/v1/me", "anon");
         filterMap.put("/api/v1/**", "authc");
         filterMap.put("/admin/ping", "anon");
-        filterMap.put("/admin/notLogin", "anon");
+//        filterMap.put("/admin/notLogin", "anon");
         filterMap.put("/admin/login", "anon");
         filterMap.put("/admin/**", "roles[root]");
         filterMap.put("/success.html","anon");
         filterMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
+//        bean.setFilters(new HashMap<String, Filter>(){{
+//            put("corsAuthenticationFilter", corsAuthenticationFilter());
+//        }});
         //设置登陆请求
-        bean.setLoginUrl("/admin/notLogin");
-        bean.setUnauthorizedUrl("/admin/unauthorized");
 
         return bean;
-    }
-
-    @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
-        advisor.setSecurityManager(securityManager);
-        return advisor;
     }
 }

@@ -196,7 +196,7 @@ CREATE TABLE `user` (
   `likes` int DEFAULT '0',
   `Reputation` int DEFAULT '0',
   `intro` varchar(200) DEFAULT NULL,
-  `avatar` varchar(100) DEFAULT 'http://localhost/avatar.jpg',
+  `avatar` varchar(100) DEFAULT 'http://127.0.0.1/image/avatar.jpg',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -207,7 +207,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (4,'cyb','123',233,10086,'root','2021-12-29 12:55:15',0,'batman',0,0,0,NULL,'http://localhost/avatar.jpg'),(5,'张三','123',33,2333,'user','2021-12-29 12:55:15',0,'333',0,0,0,NULL,'http://localhost/avatar.jpg'),(6,'李四','123',44,1008611,'user','2021-12-31 08:13:29',0,'李四',0,0,0,NULL,'http://localhost/avatar.jpg'),(7,'123','123',NULL,NULL,'user','2021-12-31 08:49:22',1,'123',0,0,0,NULL,'http://localhost/avatar.jpg'),(8,'666','123',NULL,NULL,'root','2021-12-31 09:00:24',0,'HuangMJ',0,0,0,NULL,'http://localhost/8avatar.jpg'),(9,'666666','123',NULL,NULL,'user','2022-01-06 08:06:12',0,'赵刘',0,0,0,NULL,'http://localhost/9avatar.jpg'),(10,'777','777',10,NULL,'user','2022-01-07 01:22:47',0,'Abc',0,0,0,NULL,'http://localhost/avatar.jpg'),(11,'123456','123456',NULL,NULL,'user','2022-01-07 03:13:58',0,'舒界豪',0,0,0,NULL,'http://localhost/11avatar.jpg'),(13,'DerDerTea','123456',NULL,NULL,'user','2022-01-07 06:16:43',0,'DerDerTea',0,0,0,NULL,'https://avatars.githubusercontent.com/u/71386754?v=4'),(14,'DerDerTea','123456',NULL,NULL,'user','2022-01-07 06:24:45',0,'DerDerTea',0,0,0,NULL,'https://avatars.githubusercontent.com/u/71386754?v=4');
+INSERT INTO `user` VALUES (4,'cyb','123',233,10086,'root','2021-12-29 12:55:15',0,'batman',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(5,'张三','123',33,2333,'user','2021-12-29 12:55:15',0,'333',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(6,'李四','123',44,1008611,'user','2021-12-31 08:13:29',0,'李四',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(7,'123','123',NULL,NULL,'user','2021-12-31 08:49:22',1,'123',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(8,'666','123',NULL,NULL,'root','2021-12-31 09:00:24',0,'HuangMJ',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(9,'666666','123',NULL,NULL,'user','2022-01-06 08:06:12',0,'赵刘',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(10,'777','777',10,NULL,'user','2022-01-07 01:22:47',0,'Abc',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(11,'123456','123456',NULL,NULL,'user','2022-01-07 03:13:58',0,'舒界豪',0,0,0,NULL,'http://127.0.0.1/image/avatar.jpg'),(13,'DerDerTea','123456',NULL,NULL,'user','2022-01-07 06:16:43',0,'DerDerTea',0,0,0,NULL,'https://avatars.githubusercontent.com/u/71386754?v=4'),(14,'DerDerTea','123456',NULL,NULL,'user','2022-01-07 06:24:45',0,'DerDerTea',0,0,0,NULL,'https://avatars.githubusercontent.com/u/71386754?v=4');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

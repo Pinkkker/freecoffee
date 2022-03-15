@@ -2,7 +2,6 @@ package com.pink.forum.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pink.forum.message.Result;
 import com.pink.forum.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -12,6 +12,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,13 +92,10 @@ public class UserController {
      */
     @ApiOperation("获取当前登录状态")
     @GetMapping("/me")
+    @RequiresAuthentication
     public Result loginStatus() {
         User user = ShiroUtils.getUser();
-        if (user != null) {
-            return Result.ok(user);
-        } else {
-            return Result.bad("未登录");
-        }
+        return Result.ok(user);
     }
 
     @ApiOperation("获取指定用户信息")

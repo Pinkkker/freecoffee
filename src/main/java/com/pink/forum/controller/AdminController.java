@@ -100,10 +100,10 @@ public class AdminController {
         return Result.ok(technologyStackMapper.selectByExample(new TechnologyStackExample()));
     }
 
-    @CrossOrigin
-    @GetMapping("/notLogin")
-    public Result notLogin() {
-        return Result.bad("未授权");
-    }
+//    @CrossOrigin
+//    @GetMapping("/notLogin")
+//    public Result notLogin() {
+//        return Result.bad("未授权");
+//    }
 
 }
